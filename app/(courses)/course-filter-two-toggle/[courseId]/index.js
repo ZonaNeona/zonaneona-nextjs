@@ -14,31 +14,55 @@ import Separator from "@/components/Common/Separator";
 import FooterOne from "@/components/Footer/Footer-One";
 import CourseFilterOneToggle from "@/components/Category/Filter/CourseFilterOneToggle";
 
-import CourseDetails from "../../../../data/course-details/courseData.json";
-
 const SingleCoursePage = ({ getParams }) => {
   const router = useRouter();
-  const [filteredCourses, setFilteredCourses] = useState([]);
-
+  const [filteredCourses, setFilteredCourses] = useState([]); // Отфильтрованные курсы
+  const [isLoading, setIsLoading] = useState(true); // Индикатор загрузки
   const courseId = getParams.courseId;
-  const slugifiedCourseId = slugify(courseId);
-
-  const getCourse = JSON.parse(JSON.stringify(CourseDetails.courseDetails));
-  const checkMatchCourse = getCourse.filter(
-    (course) => slugify(course.category) === slugifiedCourseId
-  );
-
-  const matchedCourse = getCourse.find(
-    (post) => slugify(post.category) === slugifiedCourseId
-  );
 
   useEffect(() => {
-    if (courseId && !matchedCourse) {
-      router.push("/course-filter-one-toggle");
-    }
+    const fetchCourse = async () => {
+      try {
+        setIsLoading(true); // Включаем индикатор загрузки
+        const response = await fetch(
+          `http://zn.igorsh9i.beget.tech/api/courses/`
+        );
+        if (!response.ok) {
+          throw new Error("Ошибка при загрузке данных о курсах");
+        }
+        const data = await response.json();
 
-    setFilteredCourses(checkMatchCourse);
-  }, [getParams.courseId]);
+        // Найти курсы по категории (или ID)
+        const matchedCourse = data.courses.find(
+          (course) => course.id.toString() === courseId
+        );
+
+        const filteredCourses = data.courses.filter(
+          (course) => course.category === matchedCourse?.category
+        );
+
+        if (!matchedCourse) {
+          router.push("/course-filter-one-toggle"); // Если курс не найден, перенаправляем
+        }
+
+        setFilteredCourses(filteredCourses); // Сохраняем найденные курсы
+      } catch (error) {
+        console.error(error.message);
+      } finally {
+        setIsLoading(false); // Отключаем индикатор загрузки
+      }
+    };
+
+    fetchCourse();
+  }, [courseId]);
+
+  if (isLoading) {
+    return <div>Загрузка...</div>;
+  }
+
+  if (!filteredCourses.length) {
+    return <div>Курсы не найдены</div>;
+  }
 
   return (
     <>
@@ -65,18 +89,5 @@ const SingleCoursePage = ({ getParams }) => {
     </>
   );
 };
-
-function slugify(text) {
-  return text
-    .toString()
-    .toLowerCase()
-    .replace(/\d+/g, "") // Remove all numeric digits
-    .replace("&", "")
-    .replace(/\s+/g, " ") // Replace spaces with -
-    .replace(/[^\w-]+/g, "") // Remove all non-word chars
-    .replace(/--+/g, "-") // Replace multiple - with single -
-    .replace(/^-+/, "") // Trim - from start of text
-    .replace(/-+$/, ""); // Trim - from end of text
-}
 
 export default SingleCoursePage;
