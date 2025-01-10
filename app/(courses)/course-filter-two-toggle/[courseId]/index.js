@@ -25,7 +25,7 @@ const SingleCoursePage = ({ getParams }) => {
       try {
         setIsLoading(true); // Включаем индикатор загрузки
         const response = await fetch(
-          `http://zn.igorsh9i.beget.tech/api/courses/`
+          `https://neonfest.ru/api/courses/`
         );
         if (!response.ok) {
           throw new Error("Ошибка при загрузке данных о курсах");
