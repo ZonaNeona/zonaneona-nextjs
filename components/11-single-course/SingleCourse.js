@@ -66,7 +66,7 @@ const SingleCourse = () => {
                       </div>
 
                       <div className="section-title subtitle">
-                        <h5 className="title">Whats Material Includes?</h5>
+                        <h5 className="title">Тестовый текст</h5>
                       </div>
 
                       <div className="row g-5">
