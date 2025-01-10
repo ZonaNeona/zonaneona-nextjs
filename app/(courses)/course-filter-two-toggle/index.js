@@ -14,20 +14,14 @@ import Pagination from "@/components/Common/Pagination";
 import Separator from "@/components/Common/Separator";
 import FooterOne from "@/components/Footer/Footer-One";
 
-import CourseDetails from "../../../data/course-details/courseData.json";
-
 const CourseFilteTwoTogglePage = () => {
-  const [courses, setCourse] = useState([]);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
+  const [courses, setCourses] = useState([]); // Хранение списка курсов
+  const [page, setPage] = useState(1); // Текущая страница
+  const [totalPages, setTotalPages] = useState(0); // Всего страниц
+  const [isLoading, setIsLoading] = useState(true); // Индикатор загрузки
 
-  let getAllCourse = JSON.parse(
-    JSON.stringify(CourseDetails.courseDetails.slice(0, 12))
-  );
-
-  const startIndex = (page - 1) * 6;
-
-  const getSelectedCourse = courses.slice(startIndex, startIndex + 6);
+  const startIndex = (page - 1) * 6; // Индекс для пагинации
+  const getSelectedCourse = courses.slice(startIndex, startIndex + 6); // Курсы для текущей страницы
 
   const handleClick = (num) => {
     setPage(num);
@@ -37,10 +31,31 @@ const CourseFilteTwoTogglePage = () => {
     });
   };
 
+  // Получение данных с API
   useEffect(() => {
-    setCourse(getAllCourse);
-    setTotalPages(Math.ceil(getAllCourse.length / 6));
-  }, [setTotalPages, setCourse]);
+    const fetchCourses = async () => {
+      try {
+        setIsLoading(true); // Включаем индикатор загрузки
+        const response = await fetch("http://zn.igorsh9i.beget.tech/api/courses/");
+        if (!response.ok) {
+          throw new Error("Ошибка при загрузке курсов");
+        }
+        const data = await response.json();
+        setCourses(data.courses); // Сохраняем курсы
+        setTotalPages(Math.ceil(data.courses.length / 6)); // Рассчитываем количество страниц
+      } catch (error) {
+        console.error("Ошибка:", error.message);
+      } finally {
+        setIsLoading(false); // Выключаем индикатор загрузки
+      }
+    };
+
+    fetchCourses();
+  }, []);
+
+  if (isLoading) {
+    return <div>Загрузка...</div>;
+  }
 
   return (
     <>
@@ -50,13 +65,13 @@ const CourseFilteTwoTogglePage = () => {
           <MobileMenu />
           <Cart />
 
-          <CategoryHeadTwo category={getAllCourse} />
+          <CategoryHeadTwo category={courses} />
           <div className="rbt-section-overlayping-top rbt-section-gapBottom">
             <div className="inner">
               <div className="container">
                 <CourseFilterOneToggle course={getSelectedCourse} />
 
-                {getAllCourse.length > 6 ? (
+                {courses.length > 6 && (
                   <div className="row">
                     <div className="col-lg-12 mt--60">
                       <Pagination
@@ -66,8 +81,6 @@ const CourseFilteTwoTogglePage = () => {
                       />
                     </div>
                   </div>
-                ) : (
-                  ""
                 )}
               </div>
             </div>
