@@ -36,7 +36,7 @@ const CourseFilteTwoTogglePage = () => {
     const fetchCourses = async () => {
       try {
         setIsLoading(true); // Включаем индикатор загрузки
-        const response = await fetch("http://zn.igorsh9i.beget.tech/api/courses/");
+        const response = await fetch("https://neonfest.ru/api/courses/");
         if (!response.ok) {
           throw new Error("Ошибка при загрузке курсов");
         }
