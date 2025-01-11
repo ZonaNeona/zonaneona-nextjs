@@ -33,7 +33,7 @@ const CourseTab = ({ course, start, end }) => {
                   {data.offPrice > 0 && (
                     <div className="rbt-badge-3 bg-white">
                       <span>-{data.discount}%</span>
-                      <span>Off</span>
+                      <span>скидка</span>
                     </div>
                   )}
                 </Link>
@@ -109,14 +109,14 @@ const CourseTab = ({ course, start, end }) => {
                 {/* Цена и кнопка */}
                 <div className="rbt-card-bottom">
                   <div className="rbt-price">
-                    <span className="current-price">{data.price} руб.</span>
-                    <span className="off-price">{data.offPrice} руб.</span>
+                    <span className="current-price">{data.price}</span>
+                    <span className="off-price">{data.offPrice}</span>
                   </div>
                   <Link
                     className="rbt-btn-link"
                     href={`/course-details/${data.id}`}
                   >
-                    Learn More<i className="feather-arrow-right"></i>
+                    Подробнее<i className="feather-arrow-right"></i>
                   </Link>
                 </div>
               </div>
