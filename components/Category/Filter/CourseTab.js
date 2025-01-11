@@ -20,6 +20,7 @@ const CourseTab = ({ course, start, end }) => {
                 !toggle ? "card-list-2" : ""
               }`}
             >
+              {/* Картинка курса */}
               <div className="rbt-card-img">
                 <Link href={`/course-details/${data.id}`}>
                   <Image
@@ -29,12 +30,16 @@ const CourseTab = ({ course, start, end }) => {
                     height={448}
                     alt="Card image"
                   />
-                  <div className="rbt-badge-3 bg-white">
-                    <span>-{data.offPrice}%</span>
-                    <span>Off</span>
-                  </div>
+                  {data.offPrice > 0 && (
+                    <div className="rbt-badge-3 bg-white">
+                      <span>-{data.discount}%</span>
+                      <span>Off</span>
+                    </div>
+                  )}
                 </Link>
               </div>
+
+              {/* Информация о курсе */}
               <div className="rbt-card-body">
                 <div className="rbt-card-top">
                   <div className="rbt-review">
@@ -56,12 +61,14 @@ const CourseTab = ({ course, start, end }) => {
                   </div>
                 </div>
 
+                {/* Название курса */}
                 <h4 className="rbt-card-title">
                   <Link href={`/course-details/${data.id}`}>
                     {data.courseTitle}
                   </Link>
                 </h4>
 
+                {/* Метаданные курса */}
                 <ul className="rbt-meta">
                   <li>
                     <i className="feather-book"></i>
@@ -73,27 +80,37 @@ const CourseTab = ({ course, start, end }) => {
                   </li>
                 </ul>
 
+                {/* Описание курса */}
                 <p className="rbt-card-text">{data.desc}</p>
-                <div className="rbt-author-meta mb--10">
-                  <div className="rbt-avater">
-                    <Link href="#">
-                      <Image
-                        src={data.userImg}
-                        width={33}
-                        height={33}
-                        alt="Sophia Jaymes"
-                      />
-                    </Link>
+
+                {/* Информация об эксперте */}
+                {data.courseInstructor && (
+                  <div className="rbt-author-meta mb--10">
+                    <div className="rbt-avater">
+                      <Link href="#">
+                        <Image
+                          src={data.courseInstructor.img}
+                          width={33}
+                          height={33}
+                          alt={data.courseInstructor.name}
+                        />
+                      </Link>
+                    </div>
+                    <div className="rbt-author-info">
+                      By{" "}
+                      <Link href={`/profile/${data.courseInstructor.id}`}>
+                        {data.courseInstructor.name}
+                      </Link>
+                      <span> — {data.courseInstructor.type}</span>
+                    </div>
                   </div>
-                  <div className="rbt-author-info">
-                    By <Link href={`/profile/${data.id}`}>{data.userName}</Link>
-                    In <Link href="#">{data.userCategory}</Link>
-                  </div>
-                </div>
+                )}
+
+                {/* Цена и кнопка */}
                 <div className="rbt-card-bottom">
                   <div className="rbt-price">
-                    <span className="current-price">${data.price}руб.</span>
-                    <span className="off-price">${data.offPrice}</span>
+                    <span className="current-price">{data.price} руб.</span>
+                    <span className="off-price">{data.offPrice} руб.</span>
                   </div>
                   <Link
                     className="rbt-btn-link"
