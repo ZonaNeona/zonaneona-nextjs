@@ -97,7 +97,7 @@ const CourseTab = ({ course, start, end }) => {
                       </Link>
                     </div>
                     <div className="rbt-author-info">
-                      By{" "}
+                      Автор {" "}
                       <Link href={`/profile/${data.courseInstructor.id}`}>
                         {data.courseInstructor.name}
                       </Link>
