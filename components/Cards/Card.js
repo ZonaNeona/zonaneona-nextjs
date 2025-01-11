@@ -1,46 +1,48 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const Card = ({ courses }) => {
+import CourseDetails from "../../data/course-details/courseData.json";
+
+const Card = ({ start, end, col, mt, isDesc, isUser }) => {
   return (
     <>
-      {courses &&
-        courses.map((data, index) => (
+      {CourseDetails &&
+        CourseDetails.courseDetails.slice(start, end).map((data, index) => (
           <div
-            className="col-lg-4 col-md-6 mb-4"
+            className={`${col} ${mt}`}
             data-sal-delay="150"
             data-sal="slide-up"
             data-sal-duration="800"
             key={index}
           >
             <div className="rbt-card variation-01 rbt-hover">
-              {/* Картинка курса */}
               <div className="rbt-card-img">
                 <Link href={`/course-details/${data.id}`}>
                   <Image
                     src={data.courseImg}
                     width={355}
                     height={244}
-                    alt={data.courseTitle}
+                    alt="Card image"
                   />
-                  {data.discount > 0 && (
+                  {data.offPrice > 0 ? (
                     <div className="rbt-badge-3 bg-white">
-                      <span>-{data.discount}%</span>
-                      <span>скидка</span>
+                      <span>-{data.offPrice}%</span>
+                      <span>Off</span>
                     </div>
+                  ) : (
+                    ""
                   )}
                 </Link>
               </div>
-
-              {/* Содержимое карточки */}
               <div className="rbt-card-body">
                 <div className="rbt-card-top">
-                  {/* Рейтинг */}
                   <div className="rbt-review">
                     <div className="rating">
-                      {[...Array(Math.round(data.star))].map((_, i) => (
-                        <i className="fas fa-star" key={i}></i>
-                      ))}
+                      <i className="fas fa-star"></i>
+                      <i className="fas fa-star"></i>
+                      <i className="fas fa-star"></i>
+                      <i className="fas fa-star"></i>
+                      <i className="fas fa-star"></i>
                     </div>
                     <span className="rating-count">
                       ({data.review} Reviews)
@@ -53,14 +55,12 @@ const Card = ({ courses }) => {
                   </div>
                 </div>
 
-                {/* Название курса */}
                 <h4 className="rbt-card-title">
                   <Link href={`/course-details/${data.id}`}>
                     {data.courseTitle}
                   </Link>
                 </h4>
 
-                {/* Метаданные курса */}
                 <ul className="rbt-meta">
                   <li>
                     <i className="feather-book"></i>
@@ -71,44 +71,48 @@ const Card = ({ courses }) => {
                     {data.student} Students
                   </li>
                 </ul>
-
-                {/* Эксперт */}
-                {data.courseInstructor && (
+                {isDesc ? <p className="rbt-card-text">{data.desc}</p> : ""}
+                {isUser ? (
                   <div className="rbt-author-meta mb--10">
                     <div className="rbt-avater">
-                      <Link href={`/profile/${data.courseInstructor.id}`}>
+                      <Link href={`/profile/${data.id}`}>
                         <Image
-                          src={data.courseInstructor.img}
+                          src={data.userImg}
                           width={33}
                           height={33}
-                          alt={data.courseInstructor.name}
+                          alt="Sophia Jaymes"
                         />
                       </Link>
                     </div>
                     <div className="rbt-author-info">
-                      By{" "}
-                      <Link href={`/profile/${data.courseInstructor.id}`}>
-                        {data.courseInstructor.name}
-                      </Link>
+                      By
+                      <Link href={`/profile/${data.id}`}>{data.userName}</Link>
+                      In <Link href="#">{data.userCategory}</Link>
                     </div>
                   </div>
+                ) : (
+                  ""
                 )}
-
-                {/* Цена и кнопки */}
                 <div className="rbt-card-bottom">
                   <div className="rbt-price">
-                    <span className="current-price">{data.price}</span>
-                    {data.offPrice && (
-                      <span className="off-price">{data.offPrice}</span>
-                    )}
+                    <span className="current-price">${data.price}</span>
+                    <span className="off-price">${data.offPrice}</span>
                   </div>
-                  <Link
-                    className="rbt-btn-link"
-                    href={`/course-details/${data.id}`}
-                  >
-                    Подробнее
-                    <i className="feather-arrow-right"></i>
-                  </Link>
+                  {data.button ? (
+                    <Link
+                      className="rbt-btn-link left-icon"
+                      href={`/course-details/${data.id}`}
+                    >
+                      <i className="feather-shopping-cart"></i> Add To Cart
+                    </Link>
+                  ) : (
+                    <Link
+                      className="rbt-btn-link"
+                      href={`/course-details/${data.id}`}
+                    >
+                      Learn More<i className="feather-arrow-right"></i>
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
