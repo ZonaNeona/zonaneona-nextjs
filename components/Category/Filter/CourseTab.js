@@ -6,6 +6,11 @@ import { useAppContext } from "@/context/Context";
 const CourseTab = ({ course, start, end }) => {
   const { toggle } = useAppContext();
 
+  // Функция форматирования цены
+  const formatPrice = (price) => {
+    return Number(price).toLocaleString("ru-RU").replace(/\s/g, "'"); // Разделяем тысячи апострофом
+  };
+  
   return (
     <>
       <div
@@ -109,8 +114,8 @@ const CourseTab = ({ course, start, end }) => {
                 {/* Цена и кнопка */}
                 <div className="rbt-card-bottom">
                   <div className="rbt-price">
-                    <span className="current-price">{data.price} ₽</span>
-                    <span className="off-price">{data.offPrice} ₽</span>
+                    <span className="current-price">{formatPrice(data.price)} ₽</span>
+                    <span className="off-price">{formatPrice(data.offPrice)} ₽</span>
                   </div>
                   <Link
                     className="rbt-btn-link"
