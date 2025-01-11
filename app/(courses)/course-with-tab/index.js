@@ -2,8 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 
-import CourseDetails from "../../../data/course-details/courseData.json";
-
 import { Provider } from "react-redux";
 import Context from "@/context/Context";
 import Store from "@/redux/store";
@@ -16,11 +14,29 @@ import CategoryHead from "@/components/Category/CategoryHead";
 import CourseTab from "@/components/Category/Filter/CourseTab";
 
 const CourseTabPage = () => {
-  let getAllCourse = JSON.parse(
-    JSON.stringify(CourseDetails.courseDetails.slice(0, 12))
-  );
-  const [courseFilter, setCourseFilter] = useState(getAllCourse);
+  const [courseFilter, setCourseFilter] = useState([]); // Храним отфильтрованные курсы
+  const [getAllCourse, setGetAllCourse] = useState([]); // Храним все курсы из API
 
+  // Получение данных из API
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await fetch("https://neonfest.ru/api/courses/"); // Ваш API эндпоинт
+        if (!response.ok) {
+          throw new Error("Ошибка при получении данных с API");
+        }
+        const data = await response.json();
+        setGetAllCourse(data); // Сохраняем все курсы
+        setCourseFilter(data); // Сохраняем курсы для отображения (по умолчанию все)
+      } catch (error) {
+        console.error("Ошибка загрузки курсов:", error);
+      }
+    };
+
+    fetchCourses();
+  }, []);
+
+  // Функция фильтрации курсов
   const filterItem = (types) => {
     const updateItem = getAllCourse.filter((curElm) => {
       return curElm.courseType === types;
@@ -32,6 +48,7 @@ const CourseTabPage = () => {
       setCourseFilter(getAllCourse);
     }
   };
+
   return (
     <>
       <Provider store={Store}>
