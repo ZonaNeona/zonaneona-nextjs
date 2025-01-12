@@ -8,10 +8,12 @@ const CourseLayout = ({ params }) => {
   const postId = params.courseId;
 
   useEffect(() => {
-    if (postId === undefined) {
+    if (!postId) {
       router.push("/course-filter-one-toggle");
     }
-  }, []);
+  }, [postId, router]);
+
+  return null;
 };
 
 export default CourseLayout;
