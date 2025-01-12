@@ -8,9 +8,9 @@ import CourseFilter from "./Filter/CourseFilter";
 import { useAppContext } from "@/context/Context";
 
 const CategoryHead = ({
-  category,
+  category = [], // Добавлен дефолтный пустой массив
   filterItem,
-  courseFilter,
+  courseFilter = [], // Добавлен дефолтный пустой массив
   setCourseFilter,
 }) => {
   const pathname = usePathname();
@@ -21,7 +21,7 @@ const CategoryHead = ({
   // Получаем уникальные значения `courseType` из категории
   const uniqueCourseTypes = [
     "Все курсы",
-    ...new Set(category.map((course) => course.courseType)),
+    ...new Set(category?.map((course) => course.courseType).filter(Boolean)),
   ];
 
   const handleButtonClick = (courseType) => {
@@ -42,7 +42,7 @@ const CategoryHead = ({
         <div className="rbt-banner-image"></div>
 
         <div className="rbt-banner-content">
-          {category ? (
+          {category?.length ? (
             <CategoryBanner category={category} />
           ) : (
             <CategoryBanner />
@@ -53,80 +53,40 @@ const CategoryHead = ({
               <div className="row g-5 align-items-center">
                 <div className="col-lg-5 col-md-12">
                   <div className="rbt-sorting-list d-flex flex-wrap align-items-center">
-                    {pathname === "/course-card-3" ||
-                    pathname === "/course-masonry" ? (
-                      ""
-                    ) : (
-                      <div className="rbt-short-item switch-layout-container">
-                        <ul className="course-switch-layout">
-                          <li className="course-switch-item">
-                            <button
-                              className={`rbt-grid-view ${
-                                pathname === "/course-card-2"
-                                  ? !toggle
-                                    ? "active"
-                                    : ""
-                                  : toggle
-                                  ? "active"
-                                  : ""
-                              }`}
-                              title="Grid Layout"
-                              onClick={() => setToggle(!toggle)}
-                            >
-                              <i className="feather-grid"></i>
-                              <span className="text ms-2">Grid</span>
-                            </button>
-                          </li>
-                          <li className="course-switch-item">
-                            <button
-                              className={`rbt-grid-view ${
-                                pathname === "/course-card-2"
-                                  ? toggle
-                                    ? "active"
-                                    : ""
-                                  : !toggle
-                                  ? "active"
-                                  : ""
-                              }`}
-                              title="List Layout"
-                              onClick={() => setToggle(!toggle)}
-                            >
-                              <i className="feather-list"></i>
-                              <span className="text ms-2">List</span>
-                            </button>
-                          </li>
-                        </ul>
-                      </div>
-                    )}
-                    {category && (
-                      <div className="rbt-short-item">
-                        <span className="course-index">
-                          Показано {courseFilter.length} из {category.length} курсов
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-                <div className="col-lg-7 col-md-12">
-                  <div className="rbt-sorting-list d-flex flex-wrap align-items-end justify-content-start justify-content-lg-end">
-                    {pathname === "/course-with-sidebar" ? (
-                      ""
-                    ) : (
-                      <div className="rbt-short-item">
-                        <form action="#" className="rbt-search-style me-0">
-                          <input
-                            type="text"
-                            placeholder="Поиск курса..."
-                          />
+                    <div className="rbt-short-item switch-layout-container">
+                      <ul className="course-switch-layout">
+                        <li className="course-switch-item">
                           <button
-                            type="submit"
-                            className="rbt-search-btn rbt-round-btn"
+                            className={`rbt-grid-view ${
+                              toggle ? "active" : ""
+                            }`}
+                            title="Grid Layout"
+                            onClick={() => setToggle(true)}
                           >
-                            <i className="feather-search"></i>
+                            <i className="feather-grid"></i>
+                            <span className="text ms-2">Grid</span>
                           </button>
-                        </form>
-                      </div>
-                    )}
+                        </li>
+                        <li className="course-switch-item">
+                          <button
+                            className={`rbt-grid-view ${
+                              !toggle ? "active" : ""
+                            }`}
+                            title="List Layout"
+                            onClick={() => setToggle(false)}
+                          >
+                            <i className="feather-list"></i>
+                            <span className="text ms-2">List</span>
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="rbt-short-item">
+                      <span className="course-index">
+                        Показано {courseFilter?.length || 0} из{" "}
+                        {category?.length || 0} курсов
+                      </span>
+                    </div>
                   </div>
                 </div>
 
@@ -149,10 +109,10 @@ const CategoryHead = ({
                           <span className="filter-text">{courseType}</span>
                           <span className="course-number">
                             {courseType === "Все курсы"
-                              ? category.length
-                              : category.filter(
+                              ? category?.length || 0
+                              : category?.filter(
                                   (course) => course.courseType === courseType
-                                ).length}
+                                ).length || 0}
                           </span>
                         </button>
                       </li>
