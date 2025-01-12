@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 import CategoryBanner from "./Category-Banner";
@@ -16,12 +16,24 @@ const CategoryHead = ({
   const pathname = usePathname();
   const { toggle, setToggle } = useAppContext();
   const [filterToggle, setFilterToggle] = useState(true);
-  const [activeTab, setActiveTab] = useState("All Course");
+  const [activeTab, setActiveTab] = useState("Все курсы");
+
+  // Получаем уникальные значения `courseType` из категории
+  const uniqueCourseTypes = [
+    "Все курсы",
+    ...new Set(category.map((course) => course.courseType)),
+  ];
 
   const handleButtonClick = (courseType) => {
-    setCourseFilter(category);
     setActiveTab(courseType);
-    filterItem(courseType);
+    if (courseType === "Все курсы") {
+      setCourseFilter(category);
+    } else {
+      const filteredCourses = category.filter(
+        (course) => course.courseType === courseType
+      );
+      setCourseFilter(filteredCourses);
+    }
   };
 
   return (
@@ -88,16 +100,9 @@ const CategoryHead = ({
                     )}
                     {category && (
                       <div className="rbt-short-item">
-                        {category.id ? (
-                          <span className="course-index">
-                            Showing 1-{category.id} of {category.id} results
-                          </span>
-                        ) : (
-                          <span className="course-index">
-                            Showing 1-{category.length / 2} of {category.length}
-                            <span className="ms-1">results</span>
-                          </span>
-                        )}
+                        <span className="course-index">
+                          Показано {courseFilter.length} из {category.length} курсов
+                        </span>
                       </div>
                     )}
                   </div>
@@ -111,7 +116,7 @@ const CategoryHead = ({
                         <form action="#" className="rbt-search-style me-0">
                           <input
                             type="text"
-                            placeholder="Search Your Course.."
+                            placeholder="Поиск курса..."
                           />
                           <button
                             type="submit"
@@ -122,105 +127,38 @@ const CategoryHead = ({
                         </form>
                       </div>
                     )}
-
-                    {pathname === "/course-with-tab" ||
-                    pathname === "/course-with-tab-two" ||
-                    pathname === "/course-with-sidebar" ? (
-                      <div className="rbt-short-item">
-                        <div className="filter-select">
-                          <span className="select-label d-block">Short By</span>
-                          <div className="filter-select rbt-modern-select search-by-category">
-                            <select data-size="7">
-                              <option>Default</option>
-                              <option>Latest</option>
-                              <option>Popularity</option>
-                              <option>Trending</option>
-                              <option>Price: low to high</option>
-                              <option>Price: high to low</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-                    ) : (
-                      ""
-                    )}
-                    {pathname === "/course-filter-two-open" ||
-                    pathname === "/course-filter-two-toggle" ||
-                    pathname === "/course-filter-one-toggle" ||
-                    pathname === "/course-card-2" ||
-                    pathname === "/course-card-3" ||
-                    pathname === "/course-masonry" ? (
-                      <div className="rbt-short-item">
-                        <div className="view-more-btn text-start text-sm-end">
-                          <button
-                            className="discover-filter-button discover-filter-activation rbt-btn btn-white btn-md radius-round"
-                            onClick={() => setFilterToggle(!filterToggle)}
-                          >
-                            Filter<i className="feather-filter"></i>
-                          </button>
-                        </div>
-                      </div>
-                    ) : (
-                      ""
-                    )}
                   </div>
                 </div>
 
-                {pathname === "/course-filter-one-open" ? (
-                  <CourseFilter />
-                ) : (
-                  <CourseFilter filterToggle={filterToggle} />
-                )}
-
-                {pathname === "/course-with-tab" ||
-                pathname === "/course-with-tab-two" ||
-                pathname === "/course-masonry" ? (
-                  <div className="col-lg-12 mt--60">
-                    <ul
-                      className="rbt-portfolio-filter filter-tab-button justify-content-start nav nav-tabs"
-                      id="rbt-myTab"
-                      role="tablist"
-                    >
-                      {[
-                        "All Course",
-                        "рекомендую",
-                        "popular",
-                        "trending",
-                        "latest",
-                      ].map((courseType, index) => (
-                        <li
-                          key={index}
-                          className="nav-item"
-                          role="presentation"
+                {/* Фильтры по формату курсов */}
+                <div className="col-lg-12 mt--60">
+                  <ul
+                    className="rbt-portfolio-filter filter-tab-button justify-content-start nav nav-tabs"
+                    id="rbt-myTab"
+                    role="tablist"
+                  >
+                    {uniqueCourseTypes.map((courseType, index) => (
+                      <li key={index} className="nav-item" role="presentation">
+                        <button
+                          className={`${
+                            activeTab === courseType ? "active" : ""
+                          }`}
+                          type="button"
+                          onClick={() => handleButtonClick(courseType)}
                         >
-                          <button
-                            className={activeTab === courseType ? "active" : ""}
-                            type="button"
-                            onClick={() => handleButtonClick(courseType)}
-                          >
-                            <span className="filter-text">{courseType}</span>
-                            {courseType === "All Course" ? (
-                              <span className="course-number">
-                                {category.filter((course) => course).length}
-                              </span>
-                            ) : (
-                              <span className="course-number">
-                                0
-                                {
-                                  category.filter(
-                                    (course) => course.courseType === courseType
-                                  ).length
-                                }
-                              </span>
-                            )}
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ) : (
-                  ""
-                )}
+                          <span className="filter-text">{courseType}</span>
+                          <span className="course-number">
+                            {courseType === "Все курсы"
+                              ? category.length
+                              : category.filter(
+                                  (course) => course.courseType === courseType
+                                ).length}
+                          </span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
