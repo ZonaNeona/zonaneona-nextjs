@@ -91,7 +91,7 @@ const CourseDetailsOne = ({ checkMatchCourses }) => {
             <Review />
           </div>
 
-          {/* Избранные отзывы */}
+          {/* Избранные отзывы 
           {checkMatchCourses.featuredReview && (
             <div className="rbt-featured-reviews mt--30">
               {checkMatchCourses.featuredReview.map((data, index) => (
@@ -99,6 +99,7 @@ const CourseDetailsOne = ({ checkMatchCourses }) => {
               ))}
             </div>
           )}
+            */}
         </div>
 
         {/* Связанные курсы */}
