@@ -56,7 +56,7 @@ const CourseTab = ({ course, start, end }) => {
                       <i className="fas fa-star"></i>
                     </div>
                     <span className="rating-count">
-                      ({data.review} Отзывов)
+                      ({data.review} Отзывов) <i className="feather-users"></i> {data.student} Учеников
                     </span>
                   </div>
                   <div className="rbt-bookmark-btn">
@@ -80,11 +80,7 @@ const CourseTab = ({ course, start, end }) => {
                     {data.lesson} Уроков
                   </li>
                   <li>
-                    <i className="feather-users"></i>
-                    {data.student} Учеников
-                  </li>
-                  <li>
-                    <i className="feather-bookmark"></i>
+                    <i className="feather-layers"></i>
                     {data.courseType}
                   </li>
                 </ul>
@@ -101,7 +97,7 @@ const CourseTab = ({ course, start, end }) => {
                       data-bs-target={`#certificateModal${index}`}
                       className="rbt-badge"
                     >
-                      <i className="feather-award"></i> Сертификат
+                      <i className="feather-check-circle"></i> Сертификат
                     </Link>
                   )}
                   {data.partner_certificate && (
@@ -111,7 +107,7 @@ const CourseTab = ({ course, start, end }) => {
                       data-bs-target={`#partnerCertificateModal${index}`}
                       className="rbt-badge"
                     >
-                      <i className="feather-award"></i> Сертификат партнера
+                      <i className="feather-award"></i> Партнер
                     </Link>
                   )}
                 </div>
