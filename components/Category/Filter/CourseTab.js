@@ -83,17 +83,14 @@ const CourseTab = ({ course, start, end }) => {
                     <i className="feather-users"></i>
                     {data.student} Учеников
                   </li>
+                   <li>
+                    <i className="feather-users"></i>
+                   {data.courseType}
+                  </li>
                 </ul>
 
                 {/* Описание курса */}
                 <p className="rbt-card-text">{data.desc}</p>
-
-                {/* Бейдж формата курса */}
-                {data.courseType && (
-                  <div className="rbt-badge bg-primary">
-                    <span>{data.courseType}</span>
-                  </div>
-                )}
 
                 {/* Бейджи сертификатов */}
                 <div className="rbt-meta">
@@ -102,7 +99,7 @@ const CourseTab = ({ course, start, end }) => {
                       href={data.certificate_img}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rbt-badge bg-success"
+                      className="rbt-badge"
                     >
                       <i className="feather-award"></i> Сертификат
                     </Link>
@@ -112,7 +109,7 @@ const CourseTab = ({ course, start, end }) => {
                       href={data.partner_certificate_img}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rbt-badge bg-warning"
+                      className="rbt-badge"
                     >
                       <i className="feather-award"></i> Сертификат партнера
                     </Link>
