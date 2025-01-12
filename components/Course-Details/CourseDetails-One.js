@@ -7,61 +7,83 @@ import Overview from "./Course-Sections/Overview";
 import RelatedCourse from "./Course-Sections/RelatedCourse";
 import Requirements from "./Course-Sections/Requirements";
 import Review from "./Course-Sections/Review";
-import Viedo from "./Course-Sections/Viedo";
+import Video from "./Course-Sections/Video";
 
 const CourseDetailsOne = ({ checkMatchCourses }) => {
+  if (!checkMatchCourses) {
+    return (
+      <div className="col-lg-12">
+        <p className="text-center">Информация о курсе отсутствует.</p>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="col-lg-8">
         <div className="course-details-content">
-          <div className="rbt-course-feature-box rbt-shadow-box thuumbnail">
-            {checkMatchCourses.courseImg && (
+          {/* Баннер курса */}
+          {checkMatchCourses.courseImg && (
+            <div className="rbt-course-feature-box rbt-shadow-box thumbnail">
               <CourseBanner bannerImg={checkMatchCourses.courseImg} />
-            )}
-          </div>
+            </div>
+          )}
+
+          {/* Меню страницы */}
           <div className="rbt-inner-onepage-navigation sticky-top mt--30">
             <CourseMenu />
           </div>
 
-          {checkMatchCourses &&
-            checkMatchCourses.courseOverview.map((data, index) => (
-              <Overview {...data} key={index} checkMatchCourses={data} />
-            ))}
+          {/* Описание курса */}
+          {checkMatchCourses.courseOverview && (
+            <div className="course-overview mt--30">
+              {checkMatchCourses.courseOverview.map((data, index) => (
+                <Overview {...data} key={index} checkMatchCourses={data} />
+              ))}
+            </div>
+          )}
 
-          <div
-            className="course-content rbt-shadow-box coursecontent-wrapper mt--30"
-            id="coursecontent"
-          >
-            {checkMatchCourses &&
-              checkMatchCourses.courseContent.map((data, index) => (
+          {/* Содержимое курса */}
+          {checkMatchCourses.courseContent && (
+            <div
+              className="course-content rbt-shadow-box coursecontent-wrapper mt--30"
+              id="coursecontent"
+            >
+              {checkMatchCourses.courseContent.map((data, index) => (
                 <Content {...data} key={index} checkMatchCourses={data} />
               ))}
-          </div>
+            </div>
+          )}
 
-          <div
-            className="rbt-course-feature-box rbt-shadow-box details-wrapper mt--30"
-            id="details"
-          >
-            <div className="row g-5">
-              {checkMatchCourses &&
-                checkMatchCourses.courseRequirement.map((data, index) => (
+          {/* Требования курса */}
+          {checkMatchCourses.courseRequirement && (
+            <div
+              className="rbt-course-feature-box rbt-shadow-box details-wrapper mt--30"
+              id="details"
+            >
+              <div className="row g-5">
+                {checkMatchCourses.courseRequirement.map((data, index) => (
                   <Requirements
                     {...data}
                     key={index}
                     checkMatchCourses={data}
                   />
                 ))}
+              </div>
             </div>
-          </div>
-          <div
-            className="rbt-instructor rbt-shadow-box intructor-wrapper mt--30"
-            id="intructor"
-          >
-            {checkMatchCourses &&
-              checkMatchCourses.courseInstructor.map((data, index) => (
-                <Instructor {...data} key={index} checkMatchCourses={data} />
-              ))}
-          </div>
+          )}
+
+          {/* Инструктор */}
+          {checkMatchCourses.courseInstructor && (
+            <div
+              className="rbt-instructor rbt-shadow-box intructor-wrapper mt--30"
+              id="instructor"
+            >
+              <Instructor checkMatchCourses={checkMatchCourses.courseInstructor} />
+            </div>
+          )}
+
+          {/* Отзывы */}
           <div
             className="rbt-review-wrapper rbt-shadow-box review-wrapper mt--30"
             id="review"
@@ -69,23 +91,31 @@ const CourseDetailsOne = ({ checkMatchCourses }) => {
             <Review />
           </div>
 
-          {checkMatchCourses &&
-            checkMatchCourses.featuredReview.map((data, index) => (
-              <Featured {...data} key={index} coursesFeatured={data} />
-            ))}
+          {/* Избранные отзывы */}
+          {checkMatchCourses.featuredReview && (
+            <div className="rbt-featured-reviews mt--30">
+              {checkMatchCourses.featuredReview.map((data, index) => (
+                <Featured {...data} key={index} coursesFeatured={data} />
+              ))}
+            </div>
+          )}
         </div>
-        <div className="related-course mt--60">
-          {checkMatchCourses &&
-            checkMatchCourses.relatedCourse.map((data, index) => (
+
+        {/* Связанные курсы */}
+        {checkMatchCourses.relatedCourse && (
+          <div className="related-course mt--60">
+            {checkMatchCourses.relatedCourse.map((data, index) => (
               <RelatedCourse {...data} key={index} checkMatchCourses={data} />
             ))}
-        </div>
+          </div>
+        )}
       </div>
 
+      {/* Боковая панель */}
       <div className="col-lg-4">
         <div className="course-sidebar sticky-top rbt-shadow-box course-sidebar-top rbt-gradient-border">
           <div className="inner">
-            <Viedo checkMatchCourses={checkMatchCourses && checkMatchCourses} />
+            <Video checkMatchCourses={checkMatchCourses} />
           </div>
         </div>
       </div>
