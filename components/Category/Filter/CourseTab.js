@@ -56,7 +56,8 @@ const CourseTab = ({ course, start, end }) => {
                       <i className="fas fa-star"></i>
                     </div>
                     <span className="rating-count">
-                      ({data.review} Отзывов) | <i className="feather-users"></i> {data.student} Учеников
+                      ({data.review} Отзывов) |{" "}
+                      <i className="feather-users"></i> {data.student} Учеников
                     </span>
                   </div>
                   <div className="rbt-bookmark-btn">
@@ -83,17 +84,15 @@ const CourseTab = ({ course, start, end }) => {
                     <i className="feather-edit"></i>
                     7 Заданий
                   </li>
-                  {/* Вывод Формата Курса
                   <li>
                     <i className="feather-layers"></i>
                     {data.courseType}
                   </li>
-                   */}
                 </ul>
+
                 {/* Бейджи сертификатов */}
-                <div className="rbt-meta">
+                <div className="rbt-meta" style={{ display: "flex", gap: "10px" }}>
                   {data.certificate && (
-                    
                     <Link
                       href="#"
                       data-bs-toggle="modal"
@@ -101,28 +100,22 @@ const CourseTab = ({ course, start, end }) => {
                       className="rbt-badge"
                     >
                       <i className="feather-check-circle"></i> Сертификат
-
                     </Link>
-                  
                   )}
                   {data.partner_certificate && (
-                    
                     <Link
                       href="#"
                       data-bs-toggle="modal"
                       data-bs-target={`#partnerCertificateModal${index}`}
                       className="rbt-badge"
                     >
-                        <i className="feather-award"></i> Партнер
-                     
+                      <i className="feather-award"></i> Партнер
                     </Link>
-                    
                   )}
                 </div>
+
                 {/* Описание курса */}
                 <p className="rbt-card-text">{data.desc}</p>
-
-                
 
                 {/* Информация об эксперте */}
                 {data.courseInstructor && (
@@ -142,7 +135,17 @@ const CourseTab = ({ course, start, end }) => {
                       <Link href={`/profile/${data.courseInstructor.id}`}>
                         {data.courseInstructor.name}
                       </Link>
-                      <span> — {data.courseInstructor.type}</span>
+                      <span>
+                        {" "}
+                        <Link
+                          href="#"
+                          data-bs-toggle="modal"
+                          data-bs-target="#accreditationModal"
+                          className="rbt-badge"
+                        >
+                          <i className="feather-check-circle"></i> Аккредитован
+                        </Link>
+                      </span>
                     </div>
                   </div>
                 )}
@@ -167,81 +170,6 @@ const CourseTab = ({ course, start, end }) => {
               </div>
             </div>
           </div>
-        ))}
-
-        {/* Модальные окна сертификатов */}
-        {course.map((data, index) => (
-          <>
-            {data.certificate && (
-              <div
-                className="rbt-team-modal modal fade rbt-modal-default"
-                id={`certificateModal${index}`}
-                tabIndex="-1"
-                aria-labelledby={`certificateModal${index}`}
-                aria-hidden="true"
-                key={`certificateModal${index}`}
-              >
-                <div className="modal-dialog modal-dialog-centered">
-                  <div className="modal-content">
-                    <div className="modal-header">
-                      <button
-                        type="button"
-                        className="rbt-round-btn"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                      >
-                        <i className="feather-x"></i>
-                      </button>
-                    </div>
-                    <div className="modal-body">
-                      <Image
-                        className="w-100"
-                        src={data.certificate_img}
-                        alt="Сертификат"
-                        width={800}
-                        height={600}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {data.partner_certificate && (
-              <div
-                className="rbt-team-modal modal fade rbt-modal-default"
-                id={`partnerCertificateModal${index}`}
-                tabIndex="-1"
-                aria-labelledby={`partnerCertificateModal${index}`}
-                aria-hidden="true"
-                key={`partnerCertificateModal${index}`}
-              >
-                <div className="modal-dialog modal-dialog-centered">
-                  <div className="modal-content">
-                    <div className="modal-header">
-                      <button
-                        type="button"
-                        className="rbt-round-btn"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                      >
-                        <i className="feather-x"></i>
-                      </button>
-                    </div>
-                    <div className="modal-body">
-                      <Image
-                        className="w-100"
-                        src={data.partner_certificate_img}
-                        alt="Сертификат партнера"
-                        width={800}
-                        height={600}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </>
         ))}
       </div>
     </>
