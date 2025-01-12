@@ -56,7 +56,7 @@ const CourseTab = ({ course, start, end }) => {
                       <i className="fas fa-star"></i>
                     </div>
                     <span className="rating-count">
-                      ({data.review} Отзывов) <i className="feather-users"></i> {data.student} Учеников
+                      ({data.review} Отзывов) | <i className="feather-users"></i> {data.student} Учеников
                     </span>
                   </div>
                   <div className="rbt-bookmark-btn">
@@ -102,7 +102,7 @@ const CourseTab = ({ course, start, end }) => {
                       href="#"
                       data-bs-toggle="modal"
                       data-bs-target={`#certificateModal${index}`}
-                      className="rbt-badge"
+                      className="rbt-badge ml--5"
                     >
                       <i className="feather-check-circle"></i> Сертификат
 
