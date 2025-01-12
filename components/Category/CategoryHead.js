@@ -183,7 +183,7 @@ const CategoryHead = ({
                     >
                       {[
                         "All Course",
-                        "featured",
+                        "рекомендую",
                         "popular",
                         "trending",
                         "latest",
