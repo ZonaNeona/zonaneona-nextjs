@@ -141,7 +141,7 @@ const CourseTab = ({ course, start, end }) => {
                           href="#"
                           data-bs-toggle="modal"
                           data-bs-target="#accreditationModal"
-                          className="rbt-badge-4"
+                          className="rbt-badge-5"
                         >
                           <i className="feather-check-circle"></i> Аккредитован
                         </Link>
