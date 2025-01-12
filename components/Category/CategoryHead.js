@@ -64,7 +64,7 @@ const CategoryHead = ({
                             onClick={() => setToggle(true)}
                           >
                             <i className="feather-grid"></i>
-                            <span className="text ms-2">Grid</span>
+                            <span className="text ms-2">Таблица</span>
                           </button>
                         </li>
                         <li className="course-switch-item">
@@ -76,7 +76,7 @@ const CategoryHead = ({
                             onClick={() => setToggle(false)}
                           >
                             <i className="feather-list"></i>
-                            <span className="text ms-2">List</span>
+                            <span className="text ms-2">Список</span>
                           </button>
                         </li>
                       </ul>
