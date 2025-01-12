@@ -10,7 +10,7 @@ const CourseTab = ({ course, start, end }) => {
   const formatPrice = (price) => {
     return Number(price).toLocaleString("ru-RU").replace(/\s/g, "'"); // Разделяем тысячи апострофом
   };
-  
+
   return (
     <>
       <div
@@ -88,6 +88,37 @@ const CourseTab = ({ course, start, end }) => {
                 {/* Описание курса */}
                 <p className="rbt-card-text">{data.desc}</p>
 
+                {/* Бейдж формата курса */}
+                {data.courseType && (
+                  <div className="rbt-badge bg-primary">
+                    <span>{data.courseType}</span>
+                  </div>
+                )}
+
+                {/* Бейджи сертификатов */}
+                <div className="rbt-meta">
+                  {data.certificate && (
+                    <Link
+                      href={data.certificate_img}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rbt-badge bg-success"
+                    >
+                      <i className="feather-award"></i> Сертификат
+                    </Link>
+                  )}
+                  {data.partner_certificate && (
+                    <Link
+                      href={data.partner_certificate_img}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rbt-badge bg-warning"
+                    >
+                      <i className="feather-award"></i> Сертификат партнера
+                    </Link>
+                  )}
+                </div>
+
                 {/* Информация об эксперте */}
                 {data.courseInstructor && (
                   <div className="rbt-author-meta mb--10">
@@ -102,7 +133,7 @@ const CourseTab = ({ course, start, end }) => {
                       </Link>
                     </div>
                     <div className="rbt-author-info">
-                      Автор {" "}
+                      Автор{" "}
                       <Link href={`/profile/${data.courseInstructor.id}`}>
                         {data.courseInstructor.name}
                       </Link>
@@ -114,8 +145,12 @@ const CourseTab = ({ course, start, end }) => {
                 {/* Цена и кнопка */}
                 <div className="rbt-card-bottom">
                   <div className="rbt-price">
-                    <span className="current-price">{formatPrice(data.price)} ₽</span>
-                    <span className="off-price">{formatPrice(data.offPrice)} ₽</span>
+                    <span className="current-price">
+                      {formatPrice(data.price)} ₽
+                    </span>
+                    <span className="off-price">
+                      {formatPrice(data.offPrice)} ₽
+                    </span>
                   </div>
                   <Link
                     className="rbt-btn-link"
