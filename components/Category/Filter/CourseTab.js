@@ -90,12 +90,8 @@ const CourseTab = ({ course, start, end }) => {
                   </li>
                    */}
                 </ul>
-
-                {/* Описание курса */}
-                <p className="rbt-card-text">{data.desc}</p>
-
                 {/* Бейджи сертификатов */}
-                <div className="rbt-badge-group">
+                <div className="rbt-meta">
                   {data.certificate && (
                     
                     <Link
@@ -123,6 +119,10 @@ const CourseTab = ({ course, start, end }) => {
                     
                   )}
                 </div>
+                {/* Описание курса */}
+                <p className="rbt-card-text">{data.desc}</p>
+
+                
 
                 {/* Информация об эксперте */}
                 {data.courseInstructor && (
