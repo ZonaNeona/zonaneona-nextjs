@@ -102,7 +102,7 @@ const CourseTab = ({ course, start, end }) => {
                       href="#"
                       data-bs-toggle="modal"
                       data-bs-target={`#certificateModal${index}`}
-                      className="rbt-badge-5"
+                      className="rbt-badge"
                     >
                       <i className="feather-check-circle"></i> Сертификат
 
@@ -115,7 +115,7 @@ const CourseTab = ({ course, start, end }) => {
                       href="#"
                       data-bs-toggle="modal"
                       data-bs-target={`#partnerCertificateModal${index}`}
-                      className="rbt-badge-5"
+                      className="rbt-badge"
                     >
                         <i className="feather-award"></i> Партнер
                      
