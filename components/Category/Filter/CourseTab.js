@@ -89,28 +89,34 @@ const CourseTab = ({ course, start, end }) => {
                 <p className="rbt-card-text">{data.desc}</p>
 
                 {/* Бейджи сертификатов */}
-                <div className="rbt-meta">
+                <ul className="rbt-meta rbt-meta-badge">
                   {data.certificate && (
+                    
                     <Link
                       href="#"
                       data-bs-toggle="modal"
                       data-bs-target={`#certificateModal${index}`}
                       className="rbt-badge"
-                    >
+                    ><li>
                       <i className="feather-check-circle"></i> Сертификат
+                        </li>
                     </Link>
+                  
                   )}
                   {data.partner_certificate && (
+                    
                     <Link
                       href="#"
                       data-bs-toggle="modal"
                       data-bs-target={`#partnerCertificateModal${index}`}
                       className="rbt-badge"
-                    >
-                      <i className="feather-award"></i> Партнер
+                    ><li>
+                        <i className="feather-award"></i> Партнер
+                        </li>
                     </Link>
+                    
                   )}
-                </div>
+                </ul>
 
                 {/* Информация об эксперте */}
                 {data.courseInstructor && (
