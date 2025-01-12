@@ -7,7 +7,7 @@ import Overview from "./Course-Sections/Overview";
 import RelatedCourse from "./Course-Sections/RelatedCourse";
 import Requirements from "./Course-Sections/Requirements";
 import Review from "./Course-Sections/Review";
-import Video from "./Course-Sections/Video";
+import Video from "./Course-Sections/Viedo";
 
 const CourseDetailsOne = ({ checkMatchCourses }) => {
   if (!checkMatchCourses) {
