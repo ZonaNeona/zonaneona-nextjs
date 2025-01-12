@@ -56,7 +56,7 @@ const CourseTab = ({ course, start, end }) => {
                       <i className="fas fa-star"></i>
                     </div>
                     <span className="rating-count">
-                      ({data.review} Reviews)
+                      ({data.review} Отзывов)
                     </span>
                   </div>
                   <div className="rbt-bookmark-btn">
@@ -77,11 +77,11 @@ const CourseTab = ({ course, start, end }) => {
                 <ul className="rbt-meta">
                   <li>
                     <i className="feather-book"></i>
-                    {data.lesson} Lessons
+                    {data.lesson} Уроков
                   </li>
                   <li>
                     <i className="feather-users"></i>
-                    {data.student} Students
+                    {data.student} Учеников
                   </li>
                 </ul>
 
