@@ -83,9 +83,9 @@ const CourseTab = ({ course, start, end }) => {
                     <i className="feather-users"></i>
                     {data.student} Учеников
                   </li>
-                   <li>
-                    <i className="feather-users"></i>
-                   {data.courseType}
+                  <li>
+                    <i className="feather-bookmark"></i>
+                    {data.courseType}
                   </li>
                 </ul>
 
@@ -96,9 +96,9 @@ const CourseTab = ({ course, start, end }) => {
                 <div className="rbt-meta">
                   {data.certificate && (
                     <Link
-                      href={data.certificate_img}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href="#"
+                      data-bs-toggle="modal"
+                      data-bs-target={`#certificateModal${index}`}
                       className="rbt-badge"
                     >
                       <i className="feather-award"></i> Сертификат
@@ -106,9 +106,9 @@ const CourseTab = ({ course, start, end }) => {
                   )}
                   {data.partner_certificate && (
                     <Link
-                      href={data.partner_certificate_img}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href="#"
+                      data-bs-toggle="modal"
+                      data-bs-target={`#partnerCertificateModal${index}`}
                       className="rbt-badge"
                     >
                       <i className="feather-award"></i> Сертификат партнера
@@ -159,6 +159,81 @@ const CourseTab = ({ course, start, end }) => {
               </div>
             </div>
           </div>
+        ))}
+
+        {/* Модальные окна сертификатов */}
+        {course.map((data, index) => (
+          <>
+            {data.certificate && (
+              <div
+                className="rbt-team-modal modal fade rbt-modal-default"
+                id={`certificateModal${index}`}
+                tabIndex="-1"
+                aria-labelledby={`certificateModal${index}`}
+                aria-hidden="true"
+                key={`certificateModal${index}`}
+              >
+                <div className="modal-dialog modal-dialog-centered">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <button
+                        type="button"
+                        className="rbt-round-btn"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <i className="feather-x"></i>
+                      </button>
+                    </div>
+                    <div className="modal-body">
+                      <Image
+                        className="w-100"
+                        src={data.certificate_img}
+                        alt="Сертификат"
+                        width={800}
+                        height={600}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {data.partner_certificate && (
+              <div
+                className="rbt-team-modal modal fade rbt-modal-default"
+                id={`partnerCertificateModal${index}`}
+                tabIndex="-1"
+                aria-labelledby={`partnerCertificateModal${index}`}
+                aria-hidden="true"
+                key={`partnerCertificateModal${index}`}
+              >
+                <div className="modal-dialog modal-dialog-centered">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <button
+                        type="button"
+                        className="rbt-round-btn"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <i className="feather-x"></i>
+                      </button>
+                    </div>
+                    <div className="modal-body">
+                      <Image
+                        className="w-100"
+                        src={data.partner_certificate_img}
+                        alt="Сертификат партнера"
+                        width={800}
+                        height={600}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </>
         ))}
       </div>
     </>
