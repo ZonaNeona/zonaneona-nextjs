@@ -80,16 +80,22 @@ const CourseTab = ({ course, start, end }) => {
                     {data.lesson} Уроков
                   </li>
                   <li>
+                    <i className="feather-edit"></i>
+                    7 Заданий
+                  </li>
+                  {/* Вывод Формата Курса
+                  <li>
                     <i className="feather-layers"></i>
                     {data.courseType}
                   </li>
+                   */}
                 </ul>
 
                 {/* Описание курса */}
                 <p className="rbt-card-text">{data.desc}</p>
 
                 {/* Бейджи сертификатов */}
-                <ul className="rbt-meta rbt-meta-badge">
+                <div className="rbt-meta rbt-meta-badge">
                   {data.certificate && (
                     
                     <Link
@@ -97,9 +103,9 @@ const CourseTab = ({ course, start, end }) => {
                       data-bs-toggle="modal"
                       data-bs-target={`#certificateModal${index}`}
                       className="rbt-badge"
-                    ><li>
+                    >
                       <i className="feather-check-circle"></i> Сертификат
-                        </li>
+
                     </Link>
                   
                   )}
@@ -110,13 +116,13 @@ const CourseTab = ({ course, start, end }) => {
                       data-bs-toggle="modal"
                       data-bs-target={`#partnerCertificateModal${index}`}
                       className="rbt-badge"
-                    ><li>
+                    >
                         <i className="feather-award"></i> Партнер
-                        </li>
+                     
                     </Link>
                     
                   )}
-                </ul>
+                </div>
 
                 {/* Информация об эксперте */}
                 {data.courseInstructor && (
