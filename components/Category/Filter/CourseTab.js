@@ -84,10 +84,10 @@ const CourseTab = ({ course, start, end }) => {
                     <i className="feather-edit"></i>
                     7 Заданий
                   </li>
-                  <li>
+                  {/* <li>
                     <i className="feather-layers"></i>
                     {data.courseType}
-                  </li>
+                  </li> */}
                 </ul>
 
                 {/* Бейджи сертификатов */}
