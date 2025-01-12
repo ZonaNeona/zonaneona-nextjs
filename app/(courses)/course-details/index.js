@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import sal from "sal.js";
-import CourseData from "../../../data/course-details/courseData.json";
 import { Provider } from "react-redux";
 import Store from "@/redux/store";
 import Context from "@/context/Context";
@@ -21,22 +20,36 @@ import SimilarCourses from "@/components/Course-Details/Course-Sections/SimilarC
 const SingleCourse = ({ getParams }) => {
   const router = useRouter();
   const postId = parseInt(getParams.courseId);
-  let getCourse;
-
-  getCourse = JSON.parse(JSON.stringify(CourseData.courseDetails));
-
-  const checkMatch = getCourse.find((course) => course.id === postId);
+  const [courseData, setCourseData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!checkMatch && postId) {
+    if (!postId) {
       router.push("/course-filter-one-toggle");
+      return;
     }
 
-    sal({
-      threshold: 0.01,
-      once: true,
-    });
-  }, [checkMatch, router]);
+    const fetchCourseData = async () => {
+      try {
+        const response = await fetch(`https://neonfest.ru/api/courses/${postId}/`);
+        if (!response.ok) throw new Error("Ошибка загрузки данных");
+        const data = await response.json();
+        setCourseData(data);
+      } catch (error) {
+        console.error(error);
+        router.push("/course-filter-one-toggle");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourseData();
+
+    sal({ threshold: 0.01, once: true });
+  }, [postId, router]);
+
+  if (loading) return <p>Загрузка...</p>;
+  if (!courseData) return null;
 
   return (
     <>
@@ -47,31 +60,21 @@ const SingleCourse = ({ getParams }) => {
           <Cart />
 
           <div className="rbt-breadcrumb-default rbt-breadcrumb-style-3">
-            <CourseHead
-              checkMatch={checkMatch !== undefined ? checkMatch : ""}
-            />
+            <CourseHead checkMatch={courseData} />
           </div>
 
           <div className="rbt-course-details-area ptb--60">
             <div className="container">
               <div className="row g-5">
-                <CourseDetailsOne
-                  checkMatchCourses={checkMatch !== undefined ? checkMatch : ""}
-                />
+                <CourseDetailsOne checkMatchCourses={courseData} />
               </div>
             </div>
           </div>
 
-          <CourseActionBottom
-            checkMatchCourses={checkMatch !== undefined ? checkMatch : ""}
-          />
+          <CourseActionBottom checkMatchCourses={courseData} />
 
           <div className="rbt-related-course-area bg-color-white pt--60 rbt-section-gapBottom">
-            <SimilarCourses
-              checkMatchCourses={
-                checkMatch !== undefined ? checkMatch.similarCourse : ""
-              }
-            />
+            <SimilarCourses checkMatchCourses={courseData.similarCourse || []} />
           </div>
 
           <Separator />
