@@ -7,11 +7,11 @@ const CourseMenu = () => {
   const [currentSection, setCurrentSection] = useState("overview");
 
   const sections = [
-    { id: "overview", label: "Overview" },
-    { id: "coursecontent", label: "Course Content" },
-    { id: "details", label: "Details" },
-    { id: "intructor", label: "Intructor" },
-    { id: "review", label: "Review" },
+    { id: "overview", label: "Обзор" },
+    { id: "coursecontent", label: "Содержимое" },
+    { id: "details", label: "Детали" },
+    { id: "intructor", label: "Эксперт" },
+    { id: "review", label: "Отзывы" },
   ];
 
   useEffect(() => {
