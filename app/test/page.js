@@ -10,7 +10,8 @@ const TestPage = () => {
 
   useEffect(() => {
     // Пример запроса данных с API
-    fetch("https://neonfest.ru/api/courses/2") // Замените на ваш реальный API-эндпоинт
+   
+    fetch("https://neonfest.ru/api/courses/2/") // Замените на ваш реальный API-эндпоинт
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
