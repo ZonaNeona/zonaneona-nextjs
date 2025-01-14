@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Featured from "../../components/Course-Details/Course-Sections/Featured";
+import Featured from "../../components/Course-Details/Course-Sections/Instructor";
 
 const TestPage = () => {
   const [data, setData] = useState(null);
