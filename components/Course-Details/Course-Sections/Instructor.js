@@ -31,7 +31,6 @@ const Instructor = ({ instructor }) => {
           <div className="content">
             <p className="description">{instructor.desc}</p>
             <ul className="social-icon social-default icon-naked justify-content-start">
-              {/* Здесь можно добавить социальные ссылки, если они есть */}
               <li>
                 <Link href={`tel:${instructor.contact}`}>
                   <i className="feather-phone"></i> Связаться
