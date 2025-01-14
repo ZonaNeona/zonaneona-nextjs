@@ -9,7 +9,7 @@ const TestPage = () => {
 
   useEffect(() => {
     // Запрос данных с API
-    fetch("https://neonfest.ru/api/courses/2/") // Ваш API-эндпоинт
+    fetch("https://neonfest.ru/api/courses/2/")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
