@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import RelatedCourse from "../../components/Course-Details/Course-Sections/RelatedCourse";
 
-const RelatedCourses = () => {
+const RelatedCoursesPage = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
