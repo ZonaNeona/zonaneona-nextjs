@@ -1,8 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const RelatedCourse = ({ checkMatchCourses }) => {
+  if (!checkMatchCourses || checkMatchCourses.length === 0) {
+    return <div>Связанные курсы отсутствуют.</div>;
+  }
+
   return (
     <>
       <div className="row g-5 align-items-end mb--40">
@@ -12,7 +18,7 @@ const RelatedCourse = ({ checkMatchCourses }) => {
             <h4 className="title">
               More Course By
               <strong className="color-primary ms-3">
-                {checkMatchCourses.userName}
+                {checkMatchCourses[0]?.author || "Неизвестный автор"}
               </strong>
             </h4>
           </div>
@@ -26,30 +32,25 @@ const RelatedCourse = ({ checkMatchCourses }) => {
         </div>
       </div>
       <div className="row g-5">
-        {checkMatchCourses.body.map((data, index) => (
+        {checkMatchCourses.map((data, index) => (
           <div
             className="col-lg-6 col-md-6 col-sm-6 col-12"
-            data-sal-delay="150"
-            data-sal="slide-up"
-            data-sal-duration="800"
             key={index}
           >
             <div className="rbt-card variation-01 rbt-hover">
               <div className="rbt-card-img">
                 <Link href={`/course-details/${data.id}`}>
                   <Image
-                    src={data.img}
+                    src={data.courseImg}
                     width={355}
                     height={244}
                     alt="Card image"
                   />
-                  {data.discount > 0 ? (
+                  {data.discount > 0 && (
                     <div className="rbt-badge-3 bg-white">
                       <span>-{data.discount}%</span>
                       <span>Off</span>
                     </div>
-                  ) : (
-                    ""
                   )}
                 </Link>
               </div>
@@ -57,25 +58,21 @@ const RelatedCourse = ({ checkMatchCourses }) => {
                 <div className="rbt-card-top">
                   <div className="rbt-review">
                     <div className="rating">
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
+                      {[...Array(5)].map((_, i) => (
+                        <i key={i} className="fas fa-star"></i>
+                      ))}
                     </div>
-                    <span className="rating-count">
-                      ({data.rating} Reviews)
-                    </span>
+                    <span className="rating-count">({data.review} Reviews)</span>
                   </div>
                   <div className="rbt-bookmark-btn">
-                    <Link className="rbt-round-btn" title="Bookmark" href="#">
+                    <Link className="rbt-round-btn" href="#">
                       <i className="feather-bookmark"></i>
                     </Link>
                   </div>
                 </div>
 
                 <h4 className="rbt-card-title">
-                  <Link href={`/course-details/${data.id}`}>{data.title}</Link>
+                  <Link href={`/course-details/${data.id}`}>{data.courseTitle}</Link>
                 </h4>
 
                 <ul className="rbt-meta">
@@ -94,16 +91,16 @@ const RelatedCourse = ({ checkMatchCourses }) => {
                   <div className="rbt-avater">
                     <Link href={`/profile/${data.id}`}>
                       <Image
-                        src={data.avatar}
+                        src={data.courseListImg}
                         width={33}
                         height={33}
-                        alt="Sophia Jaymes"
+                        alt="Author Image"
                       />
                     </Link>
                   </div>
                   <div className="rbt-author-info">
                     By <Link href={`/profile/${data.id}`}>{data.author}</Link>
-                    In <Link href="#">{data.post}</Link>
+                    In <Link href="#">{data.category}</Link>
                   </div>
                 </div>
                 <div className="rbt-card-bottom">
