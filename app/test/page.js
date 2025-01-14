@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Requirements from "../../components/Course-Details/Course-Sections/Requirements";
+import Viedo from "../../components/Course-Details/Course-Sections/Viedo";
 
-const RequirementsPage = () => {
+const ViedoTestPage = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("https://neonfest.ru/api/courses/2/") // Замените на ваш API-эндпоинт
+    fetch("https://neonfest.ru/api/courses/2/") // Ваш API-эндпоинт
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -29,12 +29,11 @@ const RequirementsPage = () => {
 
   return (
     <div>
-      <h1>Тестирование компонента Requirements</h1>
-      {data.courseRequirement && data.courseRequirement.map((req, index) => (
-        <Requirements key={index} checkMatchCourses={req} />
-      ))}
+      <h1>Тестирование компонента Viedo</h1>
+      {/* Передача данных в компонент Viedo */}
+      <Viedo checkMatchCourses={data} />
     </div>
   );
 };
 
-export default RequirementsPage;
+export default ViedoTestPage;
