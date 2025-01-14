@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Content from "../../components/Course-Details/Course-Sections/Course-Banner";
+import Content from "../../components/Course-Details/Course-Sections/Course-Menu";
 
 
 const TestPage = () => {
