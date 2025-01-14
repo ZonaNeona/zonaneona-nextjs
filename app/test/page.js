@@ -1,15 +1,15 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Overview from "../../components/Course-Details/Course-Sections/Overview";
+import RelatedCourse from "../../components/Course-Details/Course-Sections/RelatedCourse";
 
-const TestPage = () => {
+const RelatedCourses = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     // Запрос данных с API
-    fetch("https://neonfest.ru/api/courses/2/")
+    fetch("https://neonfest.ru/api/courses/2/") // Замените на ваш реальный API-эндпоинт
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -30,11 +30,11 @@ const TestPage = () => {
 
   return (
     <div>
-      <h1>Тестирование компонента Overview</h1>
-      {/* Передача courseOverview в компонент Overview */}
-      <Overview checkMatchCourses={data.courseOverview[0]} />
+      <h1>Связанные курсы</h1>
+      {/* Передача relatedCourse в компонент RelatedCourse */}
+      <RelatedCourse checkMatchCourses={data.relatedCourse} />
     </div>
   );
 };
 
-export default TestPage;
+export default RelatedCoursesPage;
