@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const SimilarCourses = ({ checkMatchCourses }) => {
+const SimilarCourses = ({ similarCourses }) => {
   return (
     <>
       <div className="container">
@@ -13,95 +13,72 @@ const SimilarCourses = ({ checkMatchCourses }) => {
           <h4 className="title">Related Courses</h4>
         </div>
         <div className="row g-5">
-          {checkMatchCourses &&
-            checkMatchCourses.map((item, innerIndex) => (
+          {similarCourses &&
+            similarCourses.map((item, index) => (
               <div
                 className="col-lg-4 col-md-6 col-sm-6 col-12"
-                key={innerIndex}
+                key={index}
               >
                 <div className="rbt-card variation-01 rbt-hover">
                   <div className="rbt-card-img">
-                    <Link href={item.link}>
+                    <Link href={`/course-details/${item.id}`}>
                       <Image
-                        src={item.img}
+                        src={item.courseImg}
                         width={355}
                         height={244}
-                        alt="Card image"
+                        alt={item.courseTitle}
                       />
-                      {item.discount > 0 ? (
+                      {item.discount ? (
                         <div className="rbt-badge-3 bg-white">
                           <span>-{item.discount}%</span>
                           <span>Off</span>
                         </div>
-                      ) : (
-                        ""
-                      )}
+                      ) : null}
                     </Link>
                   </div>
                   <div className="rbt-card-body">
                     <div className="rbt-card-top">
                       <div className="rbt-review">
                         <div className="rating">
-                          <i className="fas fa-star"></i>
-                          <i className="fas fa-star"></i>
-                          <i className="fas fa-star"></i>
-                          <i className="fas fa-star"></i>
-                          <i className="fas fa-star"></i>
+                          {[...Array(5)].map((_, starIndex) => (
+                            <i
+                              key={starIndex}
+                              className={`fas fa-star ${
+                                starIndex < item.star ? "color-warning" : ""
+                              }`}
+                            ></i>
+                          ))}
                         </div>
                         <span className="rating-count">
-                          ({item.rating} Reviews)
+                          ({item.review} Reviews)
                         </span>
-                      </div>
-                      <div className="rbt-bookmark-btn">
-                        <Link
-                          className="rbt-round-btn"
-                          title="Bookmark"
-                          href="#"
-                        >
-                          <i className="feather-bookmark"></i>
-                        </Link>
                       </div>
                     </div>
                     <h4 className="rbt-card-title">
-                      <Link href={item.link}>{item.title}</Link>
+                      <Link href={`/course-details/${item.id}`}>
+                        {item.courseTitle}
+                      </Link>
                     </h4>
                     <ul className="rbt-meta">
                       <li>
-                        <i className="feather-book"></i>
-                        {item.lesson} Lessons
+                        <i className="feather-book"></i> {item.lesson} Lessons
                       </li>
                       <li>
-                        <i className="feather-users"></i>
-                        {item.student} Students
+                        <i className="feather-users"></i> {item.student} Students
                       </li>
                     </ul>
-
                     <p className="rbt-card-text">{item.desc}</p>
-
-                    <div className="rbt-author-meta mb--20">
-                      <div className="rbt-avater">
-                        <Link href={`/profile/${item.id}`}>
-                          <Image
-                            src={item.avatar}
-                            width={33}
-                            height={33}
-                            alt="Sophia Jaymes"
-                          />
-                        </Link>
-                      </div>
-                      <div className="rbt-author-info">
-                        By
-                        <Link href={`/profile/${item.id}`}>{item.author}</Link>
-                        In
-                        <Link href="#">{item.post}</Link>
-                      </div>
-                    </div>
                     <div className="rbt-card-bottom">
                       <div className="rbt-price">
                         <span className="current-price">${item.price}</span>
-                        <span className="off-price">${item.offPrice}</span>
+                        {item.offPrice && (
+                          <span className="off-price">${item.offPrice}</span>
+                        )}
                       </div>
-                      <Link className="rbt-btn-link" href="/course-details">
+                      <Link
+                        className="rbt-btn-link"
+                        href={`/course-details/${item.id}`}
+                      >
                         Learn More<i className="feather-arrow-right"></i>
                       </Link>
                     </div>
