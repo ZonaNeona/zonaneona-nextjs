@@ -65,7 +65,7 @@ const Viedo = ({ checkMatchCourses }) => {
             hideOnScroll ? "d-none" : ""
           }`}
           data-vbtype="video"
-          href="https://www.youtube.com/watch?v=nA1Aqp0sPQo"
+          href={checkMatchCourses.video_url || "https://www.youtube.com/watch?v=nA1Aqp0sPQo"}
         >
           <div className="video-content">
             {checkMatchCourses.courseImg && (
