@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Instructor from "../../components/Course-Details/Course-Sections/Instructor";
+import Overview from "../../components/Course-Details/Course-Sections/Overview";
 
 const TestPage = () => {
   const [data, setData] = useState(null);
@@ -30,9 +30,9 @@ const TestPage = () => {
 
   return (
     <div>
-      <h1>Тестирование компонента Instructor</h1>
-      {/* Передача courseInstructor в компонент Instructor */}
-      <Instructor instructor={data.courseInstructor} />
+      <h1>Тестирование компонента Overview</h1>
+      {/* Передача courseOverview в компонент Overview */}
+      <Overview checkMatchCourses={data.courseOverview[0]} />
     </div>
   );
 };
