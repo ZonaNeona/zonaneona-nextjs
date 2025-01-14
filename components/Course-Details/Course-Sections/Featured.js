@@ -1,12 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
-
 import Image from "next/image";
 import Link from "next/link";
 
-const Featured = ({ coursesFeatured }) => {
+const Featured = ({ featuredReview }) => {
   const [toggle, setToggle] = useState(false);
+
+  if (!featuredReview || !featuredReview.length) {
+    return <div>Отзывы отсутствуют.</div>;
+  }
+
   return (
     <>
       <div
@@ -15,10 +19,10 @@ const Featured = ({ coursesFeatured }) => {
         }`}
       >
         <div className="section-title">
-          <h4 className="rbt-title-style-3">{coursesFeatured.title}</h4>
+          <h4 className="rbt-title-style-3">{featuredReview[0].title}</h4>
         </div>
         <div className="has-show-more-inner-content rbt-featured-review-list-wrapper">
-          {coursesFeatured.body.map((user, innerIndex) => (
+          {featuredReview[0].body.map((user, innerIndex) => (
             <div className="rbt-course-review about-author" key={innerIndex}>
               <div className="media">
                 <div className="thumbnail">
@@ -39,21 +43,11 @@ const Featured = ({ coursesFeatured }) => {
                       </Link>
                     </h5>
                     <div className="rating">
-                      <Link href="#">
-                        <i className="fa fa-star"></i>
-                      </Link>
-                      <Link href="#">
-                        <i className="fa fa-star"></i>
-                      </Link>
-                      <Link href="#">
-                        <i className="fa fa-star"></i>
-                      </Link>
-                      <Link href="#">
-                        <i className="fa fa-star"></i>
-                      </Link>
-                      <Link href="#">
-                        <i className="fa fa-star"></i>
-                      </Link>
+                      {[...Array(5)].map((_, i) => (
+                        <Link href="#" key={i}>
+                          <i className="fa fa-star"></i>
+                        </Link>
+                      ))}
                     </div>
                   </div>
                   <div className="content">
