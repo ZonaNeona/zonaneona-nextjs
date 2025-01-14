@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Viedo from "../../components/Course-Details/Course-Sections/Viedo";
+import SimilarCourses from "../../components/Course-Details/Course-Sections/SimilarCourses";
 
-const ViedoTestPage = () => {
+const SimilarCoursesPage = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
@@ -29,11 +29,10 @@ const ViedoTestPage = () => {
 
   return (
     <div>
-      <h1>Тестирование компонента Viedo</h1>
-      {/* Передача данных в компонент Viedo */}
-      <Viedo checkMatchCourses={data} />
+      <h1>Тестирование компонента SimilarCourses</h1>
+      <SimilarCourses similarCourses={data.similarCourse} />
     </div>
   );
 };
 
-export default ViedoTestPage;
+export default SimilarCoursesPage;
