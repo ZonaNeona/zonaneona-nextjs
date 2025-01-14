@@ -74,6 +74,7 @@ const SingleCourse = ({ getParams }) => {
           <CourseActionBottom checkMatchCourses={courseData} />
 
           <div className="rbt-related-course-area bg-color-white pt--60 rbt-section-gapBottom">
+            console.log(courseData.similarCourse);
             <SimilarCourses checkMatchCourses={courseData.similarCourse || []} />
           </div>
 
