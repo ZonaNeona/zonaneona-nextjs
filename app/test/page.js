@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Featured from "../../components/Course-Details/Course-Sections/Instructor";
+import Instructor from "../../components/Course-Details/Course-Sections/Instructor";
 
 const TestPage = () => {
   const [data, setData] = useState(null);
@@ -30,9 +30,9 @@ const TestPage = () => {
 
   return (
     <div>
-      <h1>Тестирование компонента Featured</h1>
-      {/* Передача featuredReview в компонент Featured */}
-      <Featured featuredReview={data.featuredReview} />
+      <h1>Тестирование компонента Instructor</h1>
+      {/* Передача courseInstructor в компонент Instructor */}
+      <Instructor instructor={data.courseInstructor} />
     </div>
   );
 };
