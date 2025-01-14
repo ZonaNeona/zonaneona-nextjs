@@ -1,3 +1,5 @@
+"use client";
+
 import Content from "./Course-Sections/Content";
 import CourseBanner from "./Course-Sections/Course-Banner";
 import CourseMenu from "./Course-Sections/Course-Menu";
@@ -67,7 +69,7 @@ const CourseDetailsOne = ({ checkMatchCourses }) => {
               className="rbt-instructor rbt-shadow-box intructor-wrapper mt--30"
               id="instructor"
             >
-              <Instructor checkMatchCourses={checkMatchCourses.courseInstructor} />
+              <Instructor instructor={checkMatchCourses.courseInstructor} />
             </div>
           )}
 
