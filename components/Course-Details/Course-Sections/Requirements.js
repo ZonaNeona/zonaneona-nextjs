@@ -1,6 +1,10 @@
 import React from "react";
 
 const Requirements = ({ checkMatchCourses }) => {
+  if (!checkMatchCourses || !checkMatchCourses.detailsList) {
+    return <div>Нет данных о требованиях.</div>;
+  }
+
   return (
     <>
       <div className="col-lg-6">
