@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import Content from "../../components/Course-Sections/Content"; // Укажите корректный путь к компоненту
 
