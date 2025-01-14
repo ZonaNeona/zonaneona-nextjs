@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Content from "../../components/Course-Sections/Content"; // Укажите корректный путь к компоненту
+import Content from "./Course-Sections/Content";
 
 const TestPage = () => {
   const [data, setData] = useState(null);
