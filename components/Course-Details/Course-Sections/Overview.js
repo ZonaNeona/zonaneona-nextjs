@@ -53,7 +53,7 @@ const Overview = ({ checkMatchCourses }) => {
         className={`rbt-show-more-btn ${toggle ? "active" : ""}`}
         onClick={() => setToggle(!toggle)}
       >
-        Show More
+        Развернуть
       </div>
     </div>
   );
