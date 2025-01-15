@@ -2,10 +2,6 @@ import Link from "next/link";
 import React from "react";
 
 const Content = ({ checkMatchCourses }) => {
-  // Добавьте отладочный вывод для проверки данных
-  console.log("checkMatchCourses:", checkMatchCourses);
-  console.log("Modules:", checkMatchCourses?.modules);
-
   // Проверка на наличие данных
   if (!checkMatchCourses || !checkMatchCourses.modules) {
     return (
@@ -19,7 +15,7 @@ const Content = ({ checkMatchCourses }) => {
   return (
     <div className="rbt-course-feature-inner">
       <div className="section-title">
-        <h4 className="rbt-title-style-3">{checkMatchCourses.courseTitle}</h4>
+        <h4 className="rbt-title-style-3">Модули курса</h4>
       </div>
 
       <div className="rbt-accordion-style rbt-accordion-02 accordion">
@@ -32,12 +28,12 @@ const Content = ({ checkMatchCourses }) => {
               >
                 <button
                   className={`accordion-button ${
-                    !module.collapsed ? "collapsed" : ""
+                    module.collapsed ? "collapsed" : ""
                   }`}
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target={`#collapseTwo${innerIndex}`}
-                  aria-expanded={module.expand}
+                  aria-expanded={module.expand ? "true" : "false"}
                   aria-controls={`collapseTwo${innerIndex}`}
                 >
                   {module.title}
