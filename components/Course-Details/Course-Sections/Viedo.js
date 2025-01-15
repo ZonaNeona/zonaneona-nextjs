@@ -30,6 +30,11 @@ const Viedo = ({ checkMatchCourses }) => {
     setCart(!cartToggle);
   };
 
+  // Функция форматирования цены
+  const formatPrice = (price) => {
+    return Number(price).toLocaleString("ru-RU").replace(/\s/g, "'");
+  };
+
   useEffect(() => {
     dispatch({ type: "COUNT_CART_TOTALS" });
     localStorage.setItem("hiStudy", JSON.stringify(cart));
@@ -93,13 +98,12 @@ const Viedo = ({ checkMatchCourses }) => {
       <div className="content-item-content">
         <div className="rbt-price-wrapper d-flex flex-wrap align-items-center justify-content-between">
           <div className="rbt-price">
-            <span className="current-price">${checkMatchCourses.price}</span>
-            <span className="off-price">${checkMatchCourses.offPrice}</span>
+            <span className="current-price">{formatPrice(checkMatchCourses.price)} ₽</span>
+            <span className="off-price">{formatPrice(checkMatchCourses.offPrice)} ₽</span>
           </div>
           <div className="discount-time">
             <span className="rbt-badge color-danger bg-color-danger-opacity">
-              <i className="feather-clock"></i> {checkMatchCourses.days} days
-              left!
+              <i className="feather-clock"></i> {checkMatchCourses.days} days left!
             </span>
           </div>
         </div>
@@ -133,7 +137,7 @@ const Viedo = ({ checkMatchCourses }) => {
         <span className="subtitle">
           <i className="feather-rotate-ccw"></i> 30-Day Money-Back Guarantee
         </span>
-        <div
+        {/* <div
           className={`rbt-widget-details has-show-more ${
             toggle ? "active" : ""
           }`}
@@ -155,7 +159,7 @@ const Viedo = ({ checkMatchCourses }) => {
           >
             Show More
           </div>
-        </div>
+        </div> */}
 
         <div className="social-share-wrapper mt--30 text-center">
           <div className="rbt-post-share d-flex align-items-center justify-content-center">
