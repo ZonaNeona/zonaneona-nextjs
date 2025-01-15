@@ -47,9 +47,10 @@ const CourseDetailsOne = ({ checkMatchCourses }) => {
               className="course-content rbt-shadow-box coursecontent-wrapper mt--30"
               id="coursecontent"
             >
-              <Content checkMatchCourses={checkMatchCourses.modules} />
+              <Content modules={checkMatchCourses.modules} />
             </div>
           )}
+
 
           {checkMatchCourses.courseRequirement && (
             <div
