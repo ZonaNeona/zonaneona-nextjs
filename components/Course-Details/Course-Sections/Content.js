@@ -2,9 +2,7 @@ import Link from "next/link";
 import React from "react";
 
 const Content = ({ modules }) => {
-  if (!modules || modules.length === 0) {
-    return <p>Нет данных для отображения модулей</p>;
-  }
+  if (!modules || modules.length === 0) return <p>Модули отсутствуют</p>;
 
   return (
     <div className="rbt-course-feature-inner">
@@ -50,15 +48,22 @@ const Content = ({ modules }) => {
                         <li key={subIndex}>
                           <Link href="/lesson">
                             <div className="course-content-left">
-                              {lesson.isFree ? (
-                                <i className="feather-play-circle"></i>
+                              {/* Иконка типа урока */}
+                              {lesson.lesson_type === "lecture" ? (
+                                <i className="feather-file-text"></i>
                               ) : (
-                                <i className="feather-lock"></i>
+                                <i className="feather-play-circle"></i>
                               )}
                               <span className="text">{lesson.title}</span>
                             </div>
+
                             <div className="course-content-right">
                               <span className="min-lable">{lesson.time}</span>
+                              {lesson.isFree && (
+                                <span className="rbt-badge variation-03 bg-primary-opacity">
+                                  Открытый урок
+                                </span>
+                              )}
                             </div>
                           </Link>
                         </li>
