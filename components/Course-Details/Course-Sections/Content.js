@@ -2,9 +2,18 @@ import Link from "next/link";
 import React from "react";
 
 const Content = ({ checkMatchCourses }) => {
-  // Проверяем наличие данных
-  if (!checkMatchCourses || !checkMatchCourses.modules || checkMatchCourses.modules.length === 0) {
-    return <p>Модули отсутствуют</p>;
+  // Добавьте отладочный вывод для проверки данных
+  console.log("checkMatchCourses:", checkMatchCourses);
+  console.log("Modules:", checkMatchCourses?.modules);
+
+  // Проверка на наличие данных
+  if (!checkMatchCourses || !checkMatchCourses.modules) {
+    return (
+      <div>
+        <p>Модули отсутствуют</p>
+        <pre>{JSON.stringify(checkMatchCourses, null, 2)}</pre>
+      </div>
+    );
   }
 
   return (
@@ -46,23 +55,24 @@ const Content = ({ checkMatchCourses }) => {
               >
                 <div className="accordion-body card-body pr--0">
                   <ul className="rbt-course-main-content liststyle">
-                    {module.lessons.map((lesson, subIndex) => (
-                      <li key={subIndex}>
-                        <Link href="/lesson">
-                          <div className="course-content-left">
-                            {lesson.isFree ? (
-                              <i className="feather-play-circle"></i>
-                            ) : (
-                              <i className="feather-lock"></i>
-                            )}
-                            <span className="text">{lesson.title}</span>
-                          </div>
-                          <div className="course-content-right">
-                            <span className="min-lable">{lesson.time}</span>
-                          </div>
-                        </Link>
-                      </li>
-                    ))}
+                    {module.lessons &&
+                      module.lessons.map((lesson, subIndex) => (
+                        <li key={subIndex}>
+                          <Link href="/lesson">
+                            <div className="course-content-left">
+                              {lesson.isFree ? (
+                                <i className="feather-play-circle"></i>
+                              ) : (
+                                <i className="feather-lock"></i>
+                              )}
+                              <span className="text">{lesson.title}</span>
+                            </div>
+                            <div className="course-content-right">
+                              <span className="min-lable">{lesson.time}</span>
+                            </div>
+                          </Link>
+                        </li>
+                      ))}
                   </ul>
                 </div>
               </div>
