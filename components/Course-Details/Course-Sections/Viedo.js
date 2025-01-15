@@ -165,17 +165,16 @@ const Viedo = ({ checkMatchCourses }) => {
   <ul className="has-show-more-inner-content rbt-course-details-list-wrapper">
     <li>
       <span>Договор Оферты</span>
-      <span className="rbt-feature-value rbt-badge-5">
-        <a
-          href="/path-to-offer-agreement" // замените на фактическую ссылку
-          className="rbt-badge-link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+      <a className="rbt-feature-value rbt-badge-5" href="/path-to-offer-agreement" target="_blank">
+        <i className="feather-external-link"></i>
+      </a>
+    </li>
+    <li>
+        <span>Характеристики Курса</span>
+        <a className="rbt-feature-value rbt-badge-5" href="/path-to-offer-agreement" target="_blank">
           <i className="feather-external-link"></i>
         </a>
-      </span>
-    </li>
+      </li>
   </ul>
 </div>
 
