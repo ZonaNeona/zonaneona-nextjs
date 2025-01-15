@@ -60,7 +60,7 @@ const Content = ({ modules }) => {
                             <div className="course-content-right">
                               <span className="min-lable">{lesson.time}</span>
                               {lesson.isFree ? (
-                                <span className="rbt-badge variation-03 bg-primary-opacity">
+                                <span className="rbt-badge variation-03 bg-secondary-opacity">
                                   Открытый урок
                                 </span>
                              ) : (
