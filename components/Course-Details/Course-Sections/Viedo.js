@@ -166,13 +166,13 @@ const Viedo = ({ checkMatchCourses }) => {
     <li>
       <span>Договор Оферты</span>
       <span className="rbt-feature-value rbt-badge-5">
-        <a href="/path-to-offer-agreement" target="_blank>→</a>
+        <a href="/path-to-offer-agreement" target="_blank">→</a>
       </span>
     </li>
     <li>
         <span>Характеристики Курса</span>
         <span className="rbt-feature-value rbt-badge-5">
-         <a href="/path-to-offer-agreement" target="_blank>→</a>
+         <a href="/path-to-offer-agreement" target="_blank">→</a>
         </span>
       </li>
   </ul>
