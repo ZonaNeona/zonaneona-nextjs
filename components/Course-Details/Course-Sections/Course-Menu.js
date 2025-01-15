@@ -8,7 +8,7 @@ const CourseMenu = () => {
 
   const sections = [
     { id: "overview", label: "Обзор" },
-    { id: "coursecontent", label: "Содержимое" },
+    { id: "coursecontent", label: "Состав" },
     { id: "details", label: "Детали" },
     { id: "intructor", label: "Эксперт" },
     { id: "review", label: "Отзывы" },
