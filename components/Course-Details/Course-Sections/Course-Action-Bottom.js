@@ -9,6 +9,11 @@ const CourseActionBottom = ({ checkMatchCourses }) => {
   const path = usePathname();
   const [hideOnScroll, setHideOnScroll] = useState(false);
 
+  // Функция форматирования цены
+  const formatPrice = (price) => {
+    return Number(price).toLocaleString("ru-RU").replace(/\s/g, "'");
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const ScrollPosition = window.pageYOffset;
@@ -28,6 +33,7 @@ const CourseActionBottom = ({ checkMatchCourses }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [path]);
+
   return (
     <>
       <div
@@ -46,10 +52,10 @@ const CourseActionBottom = ({ checkMatchCourses }) => {
               <div className="course-action-bottom-right rbt-single-group">
                 <div className="rbt-single-list rbt-price large-size justify-content-center">
                   <span className="current-price color-primary">
-                    ${checkMatchCourses.price}
+                    {formatPrice(checkMatchCourses.price)} ₽
                   </span>
                   <span className="off-price">
-                    ${checkMatchCourses.offPrice}
+                    {formatPrice(checkMatchCourses.offPrice)} ₽
                   </span>
                 </div>
                 <div className="rbt-single-list action-btn">
