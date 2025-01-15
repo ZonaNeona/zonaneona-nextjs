@@ -1,25 +1,9 @@
 import Link from "next/link";
 import React from "react";
 
-const Content = ({ checkMatchCourses }) => {
-  console.log("Полученные данные для Content:", checkMatchCourses);
-
-  if (!checkMatchCourses) {
-    return (
-      <div>
-        <p>Нет данных для отображения</p>
-        <pre>{JSON.stringify(checkMatchCourses, null, 2)}</pre>
-      </div>
-    );
-  }
-
-  if (!checkMatchCourses.modules || !Array.isArray(checkMatchCourses.modules)) {
-    return (
-      <div>
-        <p>Модули отсутствуют</p>
-        <pre>{JSON.stringify(checkMatchCourses.modules, null, 2)}</pre>
-      </div>
-    );
+const Content = ({ modules }) => {
+  if (!modules || modules.length === 0) {
+    return <p>Нет данных для отображения модулей</p>;
   }
 
   return (
@@ -30,7 +14,7 @@ const Content = ({ checkMatchCourses }) => {
 
       <div className="rbt-accordion-style rbt-accordion-02 accordion">
         <div className="accordion" id="accordionExampleb2">
-          {checkMatchCourses.modules.map((module, innerIndex) => (
+          {modules.map((module, innerIndex) => (
             <div className="accordion-item card" key={innerIndex}>
               <h2
                 className="accordion-header card-header"
@@ -38,12 +22,12 @@ const Content = ({ checkMatchCourses }) => {
               >
                 <button
                   className={`accordion-button ${
-                    module.collapsed ? "collapsed" : ""
+                    !module.collapsed ? "collapsed" : ""
                   }`}
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target={`#collapseTwo${innerIndex}`}
-                  aria-expanded={module.expand ? "true" : "false"}
+                  aria-expanded={module.expand}
                   aria-controls={`collapseTwo${innerIndex}`}
                 >
                   {module.title}
