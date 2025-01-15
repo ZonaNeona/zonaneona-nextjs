@@ -63,6 +63,12 @@ const Content = ({ modules }) => {
                                 <span className="rbt-badge variation-03 bg-primary-opacity">
                                   Открытый урок
                                 </span>
+                             ) : (
+                              <div className="course-content-right">
+                                <span className="course-lock">
+                                  <i className="feather-lock"></i>
+                                </span>
+                              </div>
                               )}
                             </div>
                           </Link>
