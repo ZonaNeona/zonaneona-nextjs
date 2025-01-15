@@ -64,11 +64,11 @@ const Content = ({ modules }) => {
                                   Открытый урок
                                 </span>
                              ) : (
-                              <div className="course-content-right">
+                              
                                 <span className="course-lock">
                                   <i className="feather-lock"></i>
                                 </span>
-                              </div>
+                              
                               )}
                             </div>
                           </Link>
