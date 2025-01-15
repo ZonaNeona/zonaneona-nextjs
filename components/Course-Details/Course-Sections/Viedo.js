@@ -103,7 +103,7 @@ const Viedo = ({ checkMatchCourses }) => {
           </div>
           <div className="discount-time">
             <span className="rbt-badge color-danger bg-color-danger-opacity">
-              <i className="feather-clock"></i> {checkMatchCourses.days} days left!
+              <i className="feather-clock"></i> {checkMatchCourses.days} дня!
             </span>
           </div>
         </div>
@@ -116,13 +116,13 @@ const Viedo = ({ checkMatchCourses }) => {
               addToCartFun(checkMatchCourses.id, amount, checkMatchCourses)
             }
           >
-            <span className="btn-text">Add to Cart</span>
+            <span className="btn-text">Откыть досутп</span>
             <span className="btn-icon">
               <i className="feather-arrow-right"></i>
             </span>
           </Link>
         </div>
-
+      {/*
         <div className="buy-now-btn mt--15">
           <Link
             className="rbt-btn btn-border icon-hover w-100 d-block text-center"
@@ -134,8 +134,9 @@ const Viedo = ({ checkMatchCourses }) => {
             </span>
           </Link>
         </div>
+              */}
         <span className="subtitle">
-          <i className="feather-rotate-ccw"></i> 30-Day Money-Back Guarantee
+          <i className="feather-refresh-ccw"></i> Доступна рассрочка
         </span>
         {/* <div
           className={`rbt-widget-details has-show-more ${
