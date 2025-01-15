@@ -2,12 +2,22 @@ import Link from "next/link";
 import React from "react";
 
 const Content = ({ checkMatchCourses }) => {
-  // Проверка на наличие данных
-  if (!checkMatchCourses || !checkMatchCourses.modules) {
+  console.log("Полученные данные для Content:", checkMatchCourses);
+
+  if (!checkMatchCourses) {
+    return (
+      <div>
+        <p>Нет данных для отображения</p>
+        <pre>{JSON.stringify(checkMatchCourses, null, 2)}</pre>
+      </div>
+    );
+  }
+
+  if (!checkMatchCourses.modules || !Array.isArray(checkMatchCourses.modules)) {
     return (
       <div>
         <p>Модули отсутствуют</p>
-        <pre>{JSON.stringify(checkMatchCourses, null, 2)}</pre>
+        <pre>{JSON.stringify(checkMatchCourses.modules, null, 2)}</pre>
       </div>
     );
   }
