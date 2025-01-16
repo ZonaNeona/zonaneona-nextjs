@@ -11,6 +11,7 @@ import BonusSection from "./Course-Sections/BonusSection";
 import Requirements from "./Course-Sections/Requirements";
 import Review from "./Course-Sections/Review";
 import Video from "./Course-Sections/Viedo";
+import InfoSection from "./Course-Sections/InfoSection";
 
 const CourseDetailsOne = ({ checkMatchCourses }) => {
   if (!checkMatchCourses) {
@@ -52,8 +53,29 @@ const CourseDetailsOne = ({ checkMatchCourses }) => {
             </div>
           )}
 
+           {checkMatchCourses.modules && (
+            <div
+              className="course-content rbt-shadow-box coursecontent-wrapper mt--30"
+              id="coursecontent"
+            >
+              <Content modules={checkMatchCourses.modules} />
+            </div>
+          )}
 
-          {checkMatchCourses.courseRequirement && (
+          {checkMatchCourses.InfoSection && (
+              <div
+                className="rbt-course-feature-box rbt-shadow-box details-wrapper mt--30"
+                id="info-section"
+              >
+                <InfoSection
+                  roadmap={checkMatchCourses.roadmap} // передаем характеристики
+                  bonuses={checkMatchCourses.bonuses} // передаем бонусы
+                />
+              </div>
+            )}
+
+            {/*
+            {checkMatchCourses.courseRequirement && (
             <div
               className="rbt-course-feature-box rbt-shadow-box details-wrapper mt--30"
               id="details"
@@ -64,7 +86,8 @@ const CourseDetailsOne = ({ checkMatchCourses }) => {
                 ))}
               </div>
             </div>
-          )}
+          )} 
+          */}
 
           {checkMatchCourses.courseInstructor && (
             <div
