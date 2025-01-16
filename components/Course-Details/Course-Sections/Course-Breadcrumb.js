@@ -48,12 +48,14 @@ const CourseBreadcrumb = ({ getMatchCourse }) => {
 
             <div className="feature-sin total-rating">
               <Link className="rbt-badge-4" href="#">
-                {getMatchCourse.ratingNumber} rating
+                <i className="feather-check-circle"></i> Сертификат
               </Link>
             </div>
 
-            <div className="feature-sin total-student">
-              <span> {getMatchCourse.studentNumber} students</span>
+            <div className="feature-sin total-rating">
+              <Link className="rbt-badge-4" href="#">
+                <i className="feather-award"></i> Партнерство
+              </Link>
             </div>
           </div>
 
