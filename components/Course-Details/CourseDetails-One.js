@@ -56,7 +56,7 @@ const CourseDetailsOne = ({ checkMatchCourses }) => {
           {checkMatchCourses.roadmap || checkMatchCourses.bonuses ? (
               <div
                 className="rbt-course-feature-box rbt-shadow-box details-wrapper mt--30"
-                id="info-section"
+                id="details"
               >
                 <InfoSection
                   roadmap={checkMatchCourses.roadmap} // передаем характеристики
