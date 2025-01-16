@@ -16,9 +16,7 @@ const BonusSection = ({ bonuses }) => {
                 </h4>
               </div>
             </div>
-            <div
-                className="col-lg-3 col-md-6 col-sm-6 col-12"
-              >
+            <div className="col-lg-3 col-md-6 col-sm-6 col-12">
               <div className="rbt-team-modal-thumb nav nav-tabs">
                 <a
                   className="rbt-team-thumbnail"
