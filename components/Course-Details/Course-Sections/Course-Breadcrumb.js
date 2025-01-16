@@ -26,8 +26,18 @@ const CourseBreadcrumb = ({ getMatchCourse }) => {
 
           <div className="d-flex align-items-center mb--20 flex-wrap rbt-course-details-feature">
             <div className="feature-sin best-seller-badge">
-              <span className="rbt-badge-2">
-                <span className="image">
+            <span className="rbt-badge-2">
+              <Link href="#review">{getMatchCourse.star}</Link>
+            <Link href="#">
+                <i className="fa fa-star"></i>
+              </Link>
+              </span>
+              <span className="rating-count">
+                ({getMatchCourse.review} Отзывов) |{" "}
+                <i className="feather-users"></i> {getMatchCourse.student} Учеников
+              </span>
+       {/*         <span className="rbt-badge-2">
+                    <span className="image">
                   {getMatchCourse.awardImg && (
                     <Image
                       src={getMatchCourse.awardImg}
@@ -38,7 +48,7 @@ const CourseBreadcrumb = ({ getMatchCourse }) => {
                   )}
                 </span>
                 {getMatchCourse.sellsType}
-              </span>
+              </span> */}
             </div>
             <div className="feature-sin rating">
               <Link href="#review">{getMatchCourse.star}</Link>
