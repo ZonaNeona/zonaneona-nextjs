@@ -17,9 +17,6 @@ const BonusSection = ({ bonuses }) => {
           bonuses.map((bonus, index) => (
             <div
               className="col-lg-3 col-md-6 col-sm-6 col-12"
-              data-sal-delay="150"
-              data-sal="slide-up"
-              data-sal-duration="800"
               key={index}
             >
               <div className="rbt-team-modal-thumb nav nav-tabs">
