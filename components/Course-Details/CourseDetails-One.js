@@ -98,11 +98,11 @@ const CourseDetailsOne = ({ checkMatchCourses }) => {
           )}
         </div>
 
-        {checkMatchCourses && checkMatchCourses.bonuses && (
+     {/*   {checkMatchCourses && checkMatchCourses.bonuses && (
         <div className="container mt--60">
             <BonusSection bonuses={checkMatchCourses.bonuses} />
         </div>
-        )}
+        )} */}
 
       {/*  {checkMatchCourses.relatedCourse && (
           <div className="related-course mt--60">
