@@ -13,7 +13,7 @@ const Featured = ({ featuredReview }) => {
 
   return (
     <>
-      <div  id="overview"
+      <div  id="review"
         className={`about-author-list rbt-shadow-box featured-wrapper mt--30 has-show-more ${
           toggle ? "active" : ""
         }`}
