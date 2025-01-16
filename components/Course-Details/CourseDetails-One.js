@@ -7,6 +7,7 @@ import Featured from "./Course-Sections/Featured";
 import Instructor from "./Course-Sections/Instructor";
 import Overview from "./Course-Sections/Overview";
 import RelatedCourse from "./Course-Sections/RelatedCourse";
+import BonusSection from "./Course-Sections/BonusSection";
 import Requirements from "./Course-Sections/Requirements";
 import Review from "./Course-Sections/Review";
 import Video from "./Course-Sections/Viedo";
