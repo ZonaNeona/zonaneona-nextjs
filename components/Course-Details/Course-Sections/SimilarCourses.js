@@ -44,13 +44,13 @@ const SimilarCourses = ({ checkMatchCourses }) => {
                     <div className="rbt-review">
                       <div className="rating">
                         {[...Array(Math.floor(Number(item.star) || 0))].map((_, i) => (
-    <i className="fas fa-star" key={i}></i>
-  ))}
+                          <i className="fas fa-star" key={i}></i>
+                        ))}
                       </div>
                       
                           <span className="rating-count">
                       ({data.review} Отзывов) |{" "}
-                      <i className="feather-users"></i> {data.student} Учеников
+                      <i className="feather-users"></i> {item.student} Учеников
                     </span>
                     </div>
                     <div className="rbt-bookmark-btn">
