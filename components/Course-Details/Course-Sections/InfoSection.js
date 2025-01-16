@@ -28,7 +28,7 @@ const InfoSection = ({ roadmap, bonuses }) => {
                 aria-expanded="true"
                 aria-controls="roadmapCollapse"
               >
-               Все характеристики 
+                Все характеристики
               </button>
             </h2>
             <div
@@ -78,22 +78,24 @@ const InfoSection = ({ roadmap, bonuses }) => {
                 <ul className="rbt-course-main-content liststyle">
                   {bonuses.map((bonus, index) => (
                     <li key={index}>
-                     <a
+                      <a
                         href="#"
                         data-bs-toggle="modal"
                         data-bs-target={`#bonusModal${index}`}
                       >
-                      <div className="course-content-left">
-                        <span className="text">{bonus.title}</span>
-                      </div>
+                        <div className="course-content-left">
+                          <span className="text">{bonus.title}</span>
+                        </div>
+                        <div className="course-content-right">
+                          <span className="rbt-badge variation-03 bg-secondary-opacity">
+                            <i className="feather-eye"></i> Подробнее
+                          </span>
+                        </div>
+                      </a>
 
-                      <div className="course-content-right">
-                         <span className="rbt-badge variation-03 bg-secondary-opacity"><i class="feather-eye"></i> Подробнее</span>
-                      </div>
-                        </a>
                       {/* Bonus Modal */}
                       <div
-                        className="rbt-team-modal modal fade rbt-modal-default"
+                        className="modal fade rbt-modal-default"
                         id={`bonusModal${index}`}
                         tabIndex="-1"
                         aria-labelledby={`bonusModal${index}`}
@@ -113,37 +115,49 @@ const InfoSection = ({ roadmap, bonuses }) => {
                             </div>
                             <div className="modal-body">
                               <div className="inner">
-                                <h4 className="title">{bonus.title}</h4>
-                                <p>{bonus.description}</p>
-                                {bonus.image && (
-                                  <Image
-                                    src={bonus.image}
-                                    alt={bonus.title}
-                                    width={400}
-                                    height={300}
-                                  />
-                                )}
-                                <div className="links mt-3">
-                                  {bonus.link_1 && (
-                                    <a
-                                      href={bonus.link_1}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="rbt-btn btn-border btn-sm"
-                                    >
-                                      {bonus.link_title_1 || "Link 1"}
-                                    </a>
-                                  )}
-                                  {bonus.link_2 && (
-                                    <a
-                                      href={bonus.link_2}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="rbt-btn btn-border btn-sm"
-                                    >
-                                      {bonus.link_title_2 || "Link 2"}
-                                    </a>
-                                  )}
+                                <div className="row g-5 align-items-center">
+                                  <div className="col-lg-4">
+                                    {bonus.image ? (
+                                      <Image
+                                        className="w-100"
+                                        src={bonus.image}
+                                        width={415}
+                                        height={555}
+                                        priority
+                                        alt={bonus.title}
+                                      />
+                                    ) : (
+                                      <div className="placeholder-image">
+                                        No Image Available
+                                      </div>
+                                    )}
+                                  </div>
+                                  <div className="col-lg-8">
+                                    <h4 className="title">{bonus.title}</h4>
+                                    <p>{bonus.description}</p>
+                                    <div className="links mt-3">
+                                      {bonus.link_1 && (
+                                        <a
+                                          href={bonus.link_1}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="rbt-btn btn-border btn-sm mr--10"
+                                        >
+                                          {bonus.link_title_1 || "Link 1"}
+                                        </a>
+                                      )}
+                                      {bonus.link_2 && (
+                                        <a
+                                          href={bonus.link_2}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="rbt-btn btn-border btn-sm"
+                                        >
+                                          {bonus.link_title_2 || "Link 2"}
+                                        </a>
+                                      )}
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
