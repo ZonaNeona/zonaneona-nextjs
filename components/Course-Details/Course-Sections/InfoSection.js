@@ -33,7 +33,7 @@ const InfoSection = ({ roadmap, bonuses }) => {
             </h2>
             <div
               id="roadmapCollapse"
-              className="accordion-collapse collapse show"
+              className="accordion-collapse collapse"
               aria-labelledby="roadmapHeading"
               data-bs-parent="#accordionExampleb3"
             >
@@ -78,20 +78,18 @@ const InfoSection = ({ roadmap, bonuses }) => {
                 <ul className="rbt-course-main-content liststyle">
                   {bonuses.map((bonus, index) => (
                     <li key={index}>
+                     <a
+                        data-bs-toggle="modal"
+                        data-bs-target={`#bonusModal${index}`}
+                      >
                       <div className="course-content-left">
                         <span className="text">{bonus.title}</span>
                       </div>
 
                       <div className="course-content-right">
-                        <button
-                          className="rbt-btn btn-border btn-sm"
-                          data-bs-toggle="modal"
-                          data-bs-target={`#bonusModal${index}`}
-                        >
-                          <i className="feather-eye"></i> Подробнее
-                        </button>
+                         <span className="rbt-badge variation-03 bg-secondary-opacity"><i class="feather-eye"></i> Подробнее</span>
                       </div>
-
+                        </a>
                       {/* Bonus Modal */}
                       <div
                         className="rbt-team-modal modal fade rbt-modal-default"
