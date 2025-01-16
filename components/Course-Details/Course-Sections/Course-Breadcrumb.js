@@ -38,13 +38,13 @@ const CourseBreadcrumb = ({ getMatchCourse }) => {
                 {getMatchCourse.sellsType}
               </span>
             </div>
-
             <div className="feature-sin rating">
-              <Link href="#">{getMatchCourse.star}</Link>
-              {[...Array(Math.floor(Number(data.star) || 0))].map((_, i) => (
+                <Link href="#review">{getMatchCourse.star}</Link>
+              {[...Array(Math.floor(Number(checkMatchCourses?.star) || 0))].map((_, i) => (
                 <i className="fas fa-star" key={i}></i>
               ))}
             </div>
+            
 
             <div className="feature-sin total-rating">
               <Link className="rbt-badge-4" href="#">
