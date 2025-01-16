@@ -49,7 +49,7 @@ const CourseTab = ({ course, start, end }) => {
                 <div className="rbt-card-top">
                   <div className="rbt-review">
                     <div className="rating">
-                       {[...Array(Math.floor(item.star || 0))].map(
+                       {[...Array(Math.floor(data.star || 0))].map(
                           (_, i) => (
                             <i className="fas fa-star" key={i}></i>
                           )
