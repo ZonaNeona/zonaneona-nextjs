@@ -32,7 +32,7 @@ const Instructor = ({ instructor }) => {
   };
 
   return (
-    <div className="about-author border-0 pb--0 pt--0">
+    <div className="about-author border-0 pb--0 pt--0"  id="instructor">
       <div className="section-title mb--30">
         <h4 className="rbt-title-style-3">Эксперт курса</h4>
       </div>
