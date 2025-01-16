@@ -158,4 +158,4 @@ const InfoSection = ({ roadmap, bonuses }) => {
   );
 };
 
-export default CourseDetailsAccordion;
+export default InfoSection;
