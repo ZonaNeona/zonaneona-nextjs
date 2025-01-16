@@ -49,9 +49,11 @@ const SimilarCourses = ({ checkMatchCourses }) => {
                           )
                         )}
                       </div>
-                      <span className="rating-count">
-                        ({item.review} Reviews)
-                      </span>
+                      
+                          <span className="rating-count">
+                      ({data.review} Отзывов) |{" "}
+                      <i className="feather-users"></i> {data.student} Учеников
+                    </span>
                     </div>
                     <div className="rbt-bookmark-btn">
                       <Link
@@ -70,19 +72,24 @@ const SimilarCourses = ({ checkMatchCourses }) => {
                   </h4>
                   <ul className="rbt-meta">
                     <li>
-                      <i className="feather-book"></i> {item.lesson} Lessons
+                      <i className="feather-book"></i> {item.lesson} Уроков
                     </li>
                     <li>
-                      <i className="feather-users"></i> {item.student} Students
+                      <i className="feather-check-square"></i>
+                        7 Тестов
+                    </li>
+                        <li>
+                        <i className="feather-edit"></i>
+                          2 Заданий
                     </li>
                   </ul>
                   <p className="rbt-card-text">{item.desc}</p>
                   <div className="rbt-card-bottom">
                     <div className="rbt-price">
                       <span className="current-price">
-                        ₽{item.price}
+                        {item.price} ₽
                       </span>
-                      <span className="off-price">₽{item.offPrice}</span>
+                      <span className="off-price">{item.offPrice} ₽</span>
                     </div>
                     <Link
                       className="rbt-btn-link"
