@@ -79,6 +79,7 @@ const InfoSection = ({ roadmap, bonuses }) => {
                   {bonuses.map((bonus, index) => (
                     <li key={index}>
                      <a
+                        href="#"
                         data-bs-toggle="modal"
                         data-bs-target={`#bonusModal${index}`}
                       >
