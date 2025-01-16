@@ -6,7 +6,7 @@ import CourseMenu from "./Course-Sections/Course-Menu";
 import Featured from "./Course-Sections/Featured";
 import Instructor from "./Course-Sections/Instructor";
 import Overview from "./Course-Sections/Overview";
-import SimilarCourses from "./Course-Sections/SimilarCourses";
+import RelatedCourse from "./Course-Sections/RelatedCourse";
 import Requirements from "./Course-Sections/Requirements";
 import Review from "./Course-Sections/Review";
 import Video from "./Course-Sections/Viedo";
