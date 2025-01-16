@@ -7,42 +7,47 @@ const BonusSection = ({ bonuses }) => {
       <div className="row g-5">
         {bonuses &&
           bonuses.map((bonus, index) => (
-            <div className="col-12">
-              <div className="section-title">
-                <h4 className="title">
-                  <strong className="color-primary ms-3">
-                    Бонусы
-                  </strong>
-                </h4>
-              </div>
-            </div>
-            <div className="col-lg-3 col-md-6 col-sm-6 col-12">
-              <div className="rbt-team-modal-thumb nav nav-tabs">
-                <a
-                  className="rbt-team-thumbnail"
-                  href="#"
-                  data-bs-toggle="modal"
-                  data-bs-target={`#bonusModal${index}`}
-                >
-                  <div className="thumb">
-                    {bonus.image ? (
-                      <Image
-                        src={bonus.image}
-                        width={355}
-                        height={244}
-                        priority
-                        alt={bonus.title}
-                      />
-                    ) : (
-                      <div className="placeholder-image">
-                        Без картинки
-                      </div>
-                    )}
+            <React.Fragment key={index}>
+              {index === 0 && (
+                <div className="col-12">
+                  <div className="section-title">
+                    <h4 className="title">
+                      <strong className="color-primary ms-3">Бонусы</strong>
+                    </h4>
                   </div>
-                  <h6 className="text-center mt-5">{bonus.title}</h6>
-                </a>
+                </div>
+              )}
+              <div
+                className="col-lg-3 col-md-6 col-sm-6 col-12"
+                data-sal-delay="150"
+                data-sal="slide-up"
+                data-sal-duration="800"
+              >
+                <div className="rbt-team-modal-thumb nav nav-tabs">
+                  <a
+                    className="rbt-team-thumbnail"
+                    href="#"
+                    data-bs-toggle="modal"
+                    data-bs-target={`#bonusModal${index}`}
+                  >
+                    <div className="thumb">
+                      {bonus.image ? (
+                        <Image
+                          src={bonus.image}
+                          width={355}
+                          height={244}
+                          priority
+                          alt={bonus.title}
+                        />
+                      ) : (
+                        <div className="placeholder-image">Без картинки</div>
+                      )}
+                    </div>
+                    <h6 className="text-center mt-5">{bonus.title}</h6>
+                  </a>
+                </div>
               </div>
-            </div>
+            </React.Fragment>
           ))}
       </div>
 
