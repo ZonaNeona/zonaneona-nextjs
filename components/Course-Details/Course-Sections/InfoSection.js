@@ -12,7 +12,7 @@ const InfoSection = ({ roadmap, bonuses }) => {
   return (
     <div className="rbt-course-feature-inner">
       <div className="section-title">
-        <h4 className="rbt-title-style-3">Детали курса</h4>
+        <h4 className="rbt-title-style-3">Детальная информация</h4>
       </div>
 
       <div className="rbt-accordion-style rbt-accordion-02 accordion">
@@ -21,14 +21,14 @@ const InfoSection = ({ roadmap, bonuses }) => {
           <div className="accordion-item card">
             <h2 className="accordion-header card-header" id="roadmapHeading">
               <button
-                className="accordion-button"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#roadmapCollapse"
                 aria-expanded="true"
                 aria-controls="roadmapCollapse"
               >
-                Характеристики курса
+               Все характеристики 
               </button>
             </h2>
             <div
@@ -38,13 +38,18 @@ const InfoSection = ({ roadmap, bonuses }) => {
               data-bs-parent="#accordionExampleb3"
             >
               <div className="accordion-body card-body">
-                <ul className="list-unstyled">
-                  {roadmap.map((item, index) => (
-                    <li key={index} className="mb-2">
-                      <strong>{item.text}</strong>: {item.desc}
-                    </li>
-                  ))}
-                </ul>
+                <div className="table-responsive mobile-table-750">
+                  <table className="rbt-table table table-borderless">
+                    <tbody>
+                      {roadmap.map((item, index) => (
+                        <tr key={index}>
+                          <th>{item.text}</th>
+                          <td>{item.desc}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
