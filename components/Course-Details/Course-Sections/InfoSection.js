@@ -115,47 +115,53 @@ const InfoSection = ({ roadmap, bonuses }) => {
                             </div>
                             <div className="modal-body">
                               <div className="inner">
-                                <div className="row g-5 align-items-center">
+                                 <div className="row g-5 row--30 align-items-center">
                                   <div className="col-lg-4">
-                                    {bonus.image ? (
-                                      <Image
-                                        className="w-100"
-                                        src={bonus.image}
-                                        width={415}
-                                        height={555}
-                                        priority
-                                        alt={bonus.title}
-                                      />
-                                    ) : (
-                                      <div className="placeholder-image">
-                                        No Image Available
+                                    <div className="rbt-team-thumbnail">
+                                      <div className="thumb">
+                                          {bonus.image ? (
+                                            <Image
+                                              className="w-100"
+                                              src={bonus.image}
+                                              width={415}
+                                              height={555}
+                                              priority
+                                              alt={bonus.title}
+                                            />
+                                          ) : (
+                                            <div className="placeholder-image">
+                                              No Image Available
+                                            </div>
+                                          )}
                                       </div>
-                                    )}
+                                    </div>
                                   </div>
                                   <div className="col-lg-8">
-                                    <h4 className="title">{bonus.title}</h4>
-                                    <p>{bonus.description}</p>
-                                    <div className="links mt-3">
-                                      {bonus.link_1 && (
-                                        <a
-                                          href={bonus.link_1}
-                                          target="_blank"
-                                          rel="noopener noreferrer"
-                                          className="rbt-btn btn-border btn-sm mr--10"
-                                        >
-                                          {bonus.link_title_1 || "Link 1"}
-                                        </a>
-                                      )}
-                                      {bonus.link_2 && (
-                                        <a
-                                          href={bonus.link_2}
-                                          target="_blank"
-                                          rel="noopener noreferrer"
-                                          className="rbt-btn btn-border btn-sm"
-                                        >
-                                          {bonus.link_title_2 || "Link 2"}
-                                        </a>
-                                      )}
+                                    <div className="rbt-team-details">
+                                      <h4 className="title">{bonus.title}</h4>
+                                      <p className="mb--15">{bonus.description}</p>
+                                      <div className="links mt--20">
+                                        {bonus.link_1 && (
+                                          <a
+                                            href={bonus.link_1}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="rbt-btn btn-border btn-sm mr--10"
+                                          >
+                                            {bonus.link_title_1 || "Link 1"}
+                                          </a>
+                                        )}
+                                        {bonus.link_2 && (
+                                          <a
+                                            href={bonus.link_2}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="rbt-btn btn-border btn-sm"
+                                          >
+                                            {bonus.link_title_2 || "Link 2"}
+                                          </a>
+                                        )}
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
