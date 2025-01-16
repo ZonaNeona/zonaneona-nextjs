@@ -49,7 +49,7 @@ const SimilarCourses = ({ checkMatchCourses }) => {
                       </div>
                       
                           <span className="rating-count">
-                      ({data.review} Отзывов) |{" "}
+                      ({item.review} Отзывов) |{" "}
                       <i className="feather-users"></i> {item.student} Учеников
                     </span>
                     </div>
