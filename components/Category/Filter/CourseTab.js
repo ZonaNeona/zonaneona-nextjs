@@ -84,7 +84,7 @@ const CourseTab = ({ course, start, end }) => {
                     <i className="feather-edit"></i>
                     7 Заданий
                   </li>
-                  </li>
+                  
                       <li>
                       <i className="feather-edit"></i>
                         2 Заданий
