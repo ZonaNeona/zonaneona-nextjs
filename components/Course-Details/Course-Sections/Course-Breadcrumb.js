@@ -97,15 +97,17 @@ const CourseBreadcrumb = ({ getMatchCourse }) => {
 
           <ul className="rbt-meta mt--20">
             <li>
-              <i className="feather-calendar"></i>Last updated{" "}
+              <i className="feather-calendar"></i>Обновлен{" "}
               {getMatchCourse.date}
             </li>
             <li>
-              <i className="feather-globe"></i>
-              {getMatchCourse.language}
+             <i className="feather-book"></i> {getMatchCourse.lesson} Учеников
             </li>
             <li>
-              <i className="feather-award"></i> {getMatchCourse.courseAward}
+              <i className="feather-check-square"></i> 7 Тестов
+            </li>
+            <li>
+              <i className="feather-edit"></i> 2 Задания
             </li>
           </ul>
         </div>
