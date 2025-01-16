@@ -53,7 +53,7 @@ const CourseDetailsOne = ({ checkMatchCourses }) => {
             </div>
           )}
 
-          {checkMatchCourses.InfoSection && (
+          {checkMatchCourses.roadmap || checkMatchCourses.bonuses ? (
               <div
                 className="rbt-course-feature-box rbt-shadow-box details-wrapper mt--30"
                 id="info-section"
@@ -63,7 +63,7 @@ const CourseDetailsOne = ({ checkMatchCourses }) => {
                   bonuses={checkMatchCourses.bonuses} // передаем бонусы
                 />
               </div>
-            )}
+          ) : null}
 
             {/*
             {checkMatchCourses.courseRequirement && (
