@@ -42,9 +42,21 @@ const CourseBreadcrumb = ({ getMatchCourse }) => {
             </div>
             <div className="feature-sin rating">
               <Link href="#review">{getMatchCourse.star}</Link>
-              {[...Array(Math.floor(Number(getMatchCourse?.star) || 0))].map((_, i) => (
-                <i className="fas fa-star" key={i}></i>
-              ))}
+            <Link href="#">
+                <i className="fa fa-star"></i>
+              </Link>
+              <Link href="#">
+                <i className="fa fa-star"></i>
+              </Link>
+              <Link href="#">
+                <i className="fa fa-star"></i>
+              </Link>
+              <Link href="#">
+                <i className="fa fa-star"></i>
+              </Link>
+              <Link href="#">
+                <i className="fa fa-star"></i>
+              </Link>
             </div>
 
             <div className="feature-sin total-rating">
@@ -61,29 +73,26 @@ const CourseBreadcrumb = ({ getMatchCourse }) => {
           </div>
 
           {/* Instructor Information */}
-          <div className="rbt-instructor-info mt--30">
+           <div className="rbt-author-meta mb--20">
             <div className="rbt-avater">
               {instructor.img && (
                 <Image
-                  width={60}
-                  height={60}
+                  width={40}
+                  height={40}
                   src={instructor.img}
                   alt={instructor.name}
                   className="rounded-circle"
                 />
               )}
             </div>
-            <div className="rbt-instructor-details">
-              <h4 className="title">{instructor.name}</h4>
-              <p className="type">{instructor.type}</p>
-              <p className="desc">{instructor.desc}</p>
-              <Link
-                href={`tel:${instructor.contact}`}
-                className="rbt-btn btn-border btn-sm mt--10"
-              >
-                Связаться: {instructor.contact}
-              </Link>
+            <div className="rbt-author-info">
+              Автор{" "}
+              <Link href={`/profile/${getMatchCourse.courseInstructor.id}`}>
+                {getMatchCourse.courseInstructor.name}
+              </Link>{" "}
+              - {getMatchCourse.courseInstructor.type}
             </div>
+
           </div>
 
           <ul className="rbt-meta mt--20">
