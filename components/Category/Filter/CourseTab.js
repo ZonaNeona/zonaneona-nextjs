@@ -49,11 +49,11 @@ const CourseTab = ({ course, start, end }) => {
                 <div className="rbt-card-top">
                   <div className="rbt-review">
                     <div className="rating">
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
+                       {[...Array(Math.floor(item.star || 0))].map(
+                          (_, i) => (
+                            <i className="fas fa-star" key={i}></i>
+                          )
+                        )}
                     </div>
                     <span className="rating-count">
                       ({data.review} Отзывов) |{" "}
@@ -84,35 +84,12 @@ const CourseTab = ({ course, start, end }) => {
                     <i className="feather-edit"></i>
                     7 Заданий
                   </li>
-                  {/* <li>
-                    <i className="feather-layers"></i>
-                    {data.courseType}
-                  </li> */}
+                  </li>
+                      <li>
+                      <i className="feather-edit"></i>
+                        2 Заданий
+                  </li>
                 </ul>
-
-                {/* Бейджи сертификатов */}
-                <div className="rbt-meta" style={{ display: "flex", gap: "10px" }}>
-                  {data.certificate && (
-                    <Link
-                      href="#"
-                      data-bs-toggle="modal"
-                      data-bs-target={`#certificateModal${index}`}
-                      className="rbt-badge"
-                    >
-                      <i className="feather-check-circle"></i> Сертификат
-                    </Link>
-                  )}
-                  {data.partner_certificate && (
-                    <Link
-                      href="#"
-                      data-bs-toggle="modal"
-                      data-bs-target={`#partnerCertificateModal${index}`}
-                      className="rbt-badge"
-                    >
-                      <i className="feather-award"></i> Партнер
-                    </Link>
-                  )}
-                </div>
 
                 {/* Описание курса */}
                 <p className="rbt-card-text">{data.desc}</p>
@@ -137,15 +114,11 @@ const CourseTab = ({ course, start, end }) => {
                       </Link>
                       <span>
                         {" "}
-                        <Link
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#accreditationModal"
-                          className="rbt-badge-4"
-                        >
+                        </span>
+                        <span className="rbt-badge-5">
                           <i className="feather-check-circle"></i> Аккредитован
-                        </Link>
-                      </span>
+                        </span>
+                      
                     </div>
                   </div>
                 )}
