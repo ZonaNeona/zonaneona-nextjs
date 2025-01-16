@@ -8,7 +8,7 @@ const CourseBreadcrumb = ({ getMatchCourse }) => {
         <div className="content text-start">
           <ul className="page-list">
             <li className="rbt-breadcrumb-item">
-              <Link href="/">Home</Link>
+              <Link href="/">Главная</Link>
             </li>
             <li>
               <div className="icon-right">
@@ -44,18 +44,9 @@ const CourseBreadcrumb = ({ getMatchCourse }) => {
               <Link href="#">
                 <i className="fa fa-star"></i>
               </Link>
-              <Link href="#">
-                <i className="fa fa-star"></i>
-              </Link>
-              <Link href="#">
-                <i className="fa fa-star"></i>
-              </Link>
-              <Link href="#">
-                <i className="fa fa-star"></i>
-              </Link>
-              <Link href="#">
-                <i className="fa fa-star"></i>
-              </Link>
+              {[...Array(Math.floor(Number(item.star) || 0))].map((_, i) => (
+                <i className="fas fa-star" key={i}></i>
+              ))}
             </div>
 
             <div className="feature-sin total-rating">
