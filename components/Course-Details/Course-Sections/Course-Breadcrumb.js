@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const CourseBreadcrumb = ({ getMatchCourse }) => {
+  const instructor = getMatchCourse.courseInstructor;
+
   return (
     <>
       <div className="col-lg-8">
@@ -39,12 +41,11 @@ const CourseBreadcrumb = ({ getMatchCourse }) => {
               </span>
             </div>
             <div className="feature-sin rating">
-                <Link href="#review">{getMatchCourse.star}</Link>
+              <Link href="#review">{getMatchCourse.star}</Link>
               {[...Array(Math.floor(Number(getMatchCourse?.star) || 0))].map((_, i) => (
                 <i className="fas fa-star" key={i}></i>
               ))}
             </div>
-            
 
             <div className="feature-sin total-rating">
               <Link className="rbt-badge-4" href="#">
@@ -59,31 +60,35 @@ const CourseBreadcrumb = ({ getMatchCourse }) => {
             </div>
           </div>
 
-          <div className="rbt-author-meta mb--20">
+          {/* Instructor Information */}
+          <div className="rbt-instructor-info mt--30">
             <div className="rbt-avater">
-              <Link href={`/profile/${getMatchCourse.id}`}>
-                {getMatchCourse.userImg && (
-                  <Image
-                    width={40}
-                    height={40}
-                    src={getMatchCourse.userImg}
-                    alt={getMatchCourse.userName}
-                  />
-                )}
-              </Link>
+              {instructor.img && (
+                <Image
+                  width={60}
+                  height={60}
+                  src={instructor.img}
+                  alt={instructor.name}
+                  className="rounded-circle"
+                />
+              )}
             </div>
-            <div className="rbt-author-info">
-              By
-              <Link href={`/profile/${getMatchCourse.id}`}>
-                {getMatchCourse.userName}
+            <div className="rbt-instructor-details">
+              <h4 className="title">{instructor.name}</h4>
+              <p className="type">{instructor.type}</p>
+              <p className="desc">{instructor.desc}</p>
+              <Link
+                href={`tel:${instructor.contact}`}
+                className="rbt-btn btn-border btn-sm mt--10"
+              >
+                Связаться: {instructor.contact}
               </Link>
-              In <Link href="#">{getMatchCourse.userCategory}</Link>
             </div>
           </div>
 
-          <ul className="rbt-meta">
+          <ul className="rbt-meta mt--20">
             <li>
-              <i className="feather-calendar"></i>Last updated
+              <i className="feather-calendar"></i>Last updated{" "}
               {getMatchCourse.date}
             </li>
             <li>
