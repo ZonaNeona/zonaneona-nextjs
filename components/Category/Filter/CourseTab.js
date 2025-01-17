@@ -81,7 +81,7 @@ const CourseTab = ({ course, start, end }) => {
                     {data.lesson} Уроков
                   </li>
                   <li>
-                    <i className="feather-edit"></i>
+                   <i className="feather-check-square"></i>
                     7 Тестов
                   </li>
                   
