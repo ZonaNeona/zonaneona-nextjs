@@ -95,7 +95,12 @@ const HeaderStyleTwelve = () => {
               <div className="rbt-main-navigation d-none d-xl-block">
                 <nav className="mainmenu-nav onepagenav">
                   <ul className="mainmenu">
-                    {sections.map((sec, i) => (
+                        <li><a href="/course-with-tab">Каталог</a></li>
+                        <li><a href="/course-details/2">Курс</a></li>
+                        <li><a href="/lesson">Урок</a></li>
+                        <li><a href="/lesson">Авторизация</a></li>
+                        <li><a href="/lesson">ЛК</a></li>
+                        {/* {sections.map((sec, i) => (
                       <li
                         className={currentSection === sec.id ? "current" : ""}
                         key={i}
@@ -109,14 +114,15 @@ const HeaderStyleTwelve = () => {
                           style={{ cursor: "pointer" }}
                         >
                           {sec.label}
-                        </ScrollLink>
+                        </ScrollLink> 
                       </li>
-                    ))}
+                    ))} */}
+                        
                   </ul>
                 </nav>
               </div>
 
-              <div className="header-right">
+            {/* <div className="header-right">
                 <div
                   className="rbt-offcanvas-trigger"
                   id="rbt-offcanvas-activation"
@@ -130,7 +136,8 @@ const HeaderStyleTwelve = () => {
                     </span>
                   </span>
                 </div>
-              </div>
+              </div> */}
+
             </div>
           </div>
         </div>
