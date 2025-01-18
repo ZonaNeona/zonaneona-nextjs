@@ -98,8 +98,8 @@ const HeaderStyleTwelve = () => {
                         <li><a href="/course-with-tab">Каталог</a></li>
                         <li><a href="/course-details/2">Курс</a></li>
                         <li><a href="/lesson">Урок</a></li>
-                        <li><a href="/lesson">Авторизация</a></li>
-                        <li><a href="/lesson">ЛК</a></li>
+                        <li><a href="/login">Авторизация</a></li>
+                        <li><a href="/student/student-profile">ЛК</a></li>
                         {/* {sections.map((sec, i) => (
                       <li
                         className={currentSection === sec.id ? "current" : ""}
