@@ -3,6 +3,7 @@
 import BreadCrumb from "@/components/Common/BreadCrumb";
 import FooterOne from "@/components/Footer/Footer-One";
 import HeaderStyleTen from "@/components/Header/HeaderStyle-Ten";
+import HeaderStyleTwelve from "@/components/Header/HeaderStyle-Twelve";
 import MobileMenu from "@/components/Header/MobileMenu";
 import Cart from "@/components/Header/Offcanvas/Cart";
 import Login from "@/components/Login/Login";
@@ -17,7 +18,7 @@ const LoginPage = () => {
     <>
       <Provider store={Store}>
         <Context>
-          <HeaderStyleTen headerSticky="rbt-sticky" headerType="" />
+          <HeaderStyleTwelve headerSticky="rbt-sticky" headerType="" />
           <MobileMenu />
           <Cart />
           <BreadCrumb title="Login & Register" text="Login & Register" />
