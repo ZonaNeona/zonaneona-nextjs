@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import Context from "@/context/Context";
 import Store from "@/redux/store";
 import HeaderStyleTen from "@/components/Header/HeaderStyle-Ten";
+import HeaderStyleTwelve from "@/components/Header/HeaderStyle-Twelve";
 import MobileMenu from "@/components/Header/MobileMenu";
 import Cart from "@/components/Header/Offcanvas/Cart";
 import Separator from "@/components/Common/Separator";
@@ -53,7 +54,8 @@ const CourseTabPage = () => {
     <>
       <Provider store={Store}>
         <Context>
-          <HeaderStyleTen headerSticky="rbt-sticky" headerType={true} />
+          <HeaderStyleTwelve headerSticky="rbt-sticky" headerType={true} /> 
+    {/* <HeaderStyleTen headerSticky="rbt-sticky" headerType={true} /> */}
           <MobileMenu />
           <Cart />
 
