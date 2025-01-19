@@ -38,7 +38,7 @@ const LessonPage = () => {
               <div className="plyr__video-embed rbtplayer">
                 <iframe
                   className="w-100"
-                  src="https://www.youtube.com/embed/qKzhrXqT6oE"
+                  src="https://rutube.ru/play/embed/8abca8a82b266edcc256eb7fb061abbe"
                   style={{ minHeight: "615px" }}
                 ></iframe>
               </div>
