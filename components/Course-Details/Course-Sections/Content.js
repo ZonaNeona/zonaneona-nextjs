@@ -80,7 +80,7 @@ const Content = ({ modules }) => {
                       module.tests.map((test, subIndex) => (
                         <li className="gradient-8 mt--10">Тесты</li>
                         <li key={subIndex}>
-                          <Link href="/tests/{test.id}">
+                          <Link href={`/tests/${test.id}`}">
                             <div className="course-content-left">
                                 <i className="feather-check-square"></i>
                               <span className="text">{test.title}</span>
@@ -99,7 +99,7 @@ const Content = ({ modules }) => {
                       module.assignments.map((assignment, subIndex) => (
                         <li className="gradient-8 mt--10">Задания</li>
                         <li key={subIndex}>
-                          <Link href="/assignments/{assignment.id}">
+                          <Link href={`/assignments/${assignment.id}`}>
                             <div className="course-content-left">
                                 <i className="feather-edit-2"></i>
                               <span className="text">{assignment.title}</span>
