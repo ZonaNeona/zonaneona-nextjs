@@ -76,9 +76,11 @@ const Content = ({ modules }) => {
                       ))}
                   </ul>
                   <ul className="rbt-course-main-content liststyle">
+                    {module.tests && module.tests.length > 0 && (
+                      <li className="gradient-8 mt--10">Тесты</li>
+                    )}
                     {module.tests &&
                       module.tests.map((test, subIndex) => (
-                        <li className="gradient-8 mt--10">Тесты</li>
                         <li key={subIndex}>
                           <Link href={`/tests/${test.id}`}>
                             <div className="course-content-left">
@@ -95,9 +97,11 @@ const Content = ({ modules }) => {
                       ))}
                   </ul>
                   <ul className="rbt-course-main-content liststyle">
+                    {module.assignments && module.assignments.length > 0 && (
+                      <li className="gradient-8 mt--10">Задания</li>
+                    )}
                     {module.assignments &&
                       module.assignments.map((assignment, subIndex) => (
-                        <li className="gradient-8 mt--10">Задания</li>
                         <li key={subIndex}>
                           <Link href={`/assignments/${assignment.id}`}>
                             <div className="course-content-left">
