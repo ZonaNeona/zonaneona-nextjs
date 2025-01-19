@@ -78,10 +78,11 @@ const Content = ({ modules }) => {
                   <ul className="rbt-course-main-content liststyle">
                     {module.tests &&
                       module.tests.map((test, subIndex) => (
+                        <li className="gradient-8 mt--10">Тесты</li>
                         <li key={subIndex}>
                           <Link href="/tests/{test.id}">
                             <div className="course-content-left">
-                                <i className="feather-file-text"></i>
+                                <i className="feather-check-square"></i>
                               <span className="text">{test.title}</span>
                             </div>
                             <div className="course-content-right">
@@ -96,10 +97,11 @@ const Content = ({ modules }) => {
                   <ul className="rbt-course-main-content liststyle">
                     {module.assignments &&
                       module.assignments.map((assignment, subIndex) => (
+                        <li className="gradient-8 mt--10">Задания</li>
                         <li key={subIndex}>
                           <Link href="/assignments/{assignment.id}">
                             <div className="course-content-left">
-                                <i className="feather-file-text"></i>
+                                <i className="feather-edit-2"></i>
                               <span className="text">{assignment.title}</span>
                             </div>
                             <div className="course-content-right">
