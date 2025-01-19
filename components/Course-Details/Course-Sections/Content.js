@@ -46,7 +46,7 @@ const Content = ({ modules }) => {
                     {module.lessons &&
                       module.lessons.map((lesson, subIndex) => (
                         <li key={subIndex}>
-                          <Link href="/lessons/{lesson.id}">
+                          <Link href={`/lessons/${lesson.id}`}>
                             <div className="course-content-left">
                               {/* Иконка типа урока */}
                               {lesson.lesson_type === "lecture" ? (
@@ -80,7 +80,7 @@ const Content = ({ modules }) => {
                       module.tests.map((test, subIndex) => (
                         <li className="gradient-8 mt--10">Тесты</li>
                         <li key={subIndex}>
-                          <Link href={`/tests/${test.id}`}">
+                          <Link href={`/tests/${test.id}`}>
                             <div className="course-content-left">
                                 <i className="feather-check-square"></i>
                               <span className="text">{test.title}</span>
