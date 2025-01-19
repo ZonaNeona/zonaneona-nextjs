@@ -10,7 +10,7 @@ const LessonPage = () => {
 
   // Загружаем данные с API
   useEffect(() => {
-    fetch("https://neonfest.ru/api/lessons/")
+    fetch("https://neonfest.ru/api/lessons/2")
       .then((response) => response.json())
       .then((data) => {
         // Ищем урок с id = 31
