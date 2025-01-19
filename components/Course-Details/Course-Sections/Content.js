@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const Content = ({ modules }) => {
+const Content = ({ modules, tests, assignments }) => {
   if (!modules || modules.length === 0) return <p>Модули отсутствуют</p>;
 
   return (
@@ -46,7 +46,7 @@ const Content = ({ modules }) => {
                     {module.lessons &&
                       module.lessons.map((lesson, subIndex) => (
                         <li key={subIndex}>
-                          <Link href="/lesson">
+                          <Link href={`/lessons/${lesson.id}`}>
                             <div className="course-content-left">
                               {/* Иконка типа урока */}
                               {lesson.lesson_type === "lecture" ? (
@@ -63,18 +63,59 @@ const Content = ({ modules }) => {
                                 <span className="rbt-badge variation-03 bg-secondary-opacity">
                                   Открытый урок
                                 </span>
-                             ) : (
-                              
+                              ) : (
                                 <span className="course-lock">
                                   <i className="feather-lock"></i>
                                 </span>
-                              
                               )}
                             </div>
                           </Link>
                         </li>
                       ))}
                   </ul>
+                  
+                  {/* Выводим тесты */}
+                  <div className="tests">
+                    <h5>Тесты</h5>
+                    {tests && tests.length > 0 ? (
+                      <ul>
+                        {tests.map((test) => (
+                          <li key={test.id}>
+                            <Link href={`/tests/${test.id}`}>
+                              <div className="course-content-left">
+                                <i className="feather-check-square"></i> {/* Иконка для теста */}
+                                <span className="text">{test.title}</span>
+                              </div>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p>Тесты отсутствуют</p>
+                    )}
+                  </div>
+                  
+                  {/* Выводим задания */}
+                  <div className="assignments">
+                    <h5>Задания</h5>
+                    {assignments && assignments.length > 0 ? (
+                      <ul>
+                        {assignments.map((assignment) => (
+                          <li key={assignment.id}>
+                            <Link href={`/assignments/${assignment.id}`}>
+                              <div className="course-content-left">
+                                <i className="feather-edit-2"></i> {/* Иконка для задания */}
+                                <span className="text">{assignment.title}</span>
+                              </div>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p>Задания отсутствуют</p>
+                    )}
+                  </div>
+
                 </div>
               </div>
             </div>
