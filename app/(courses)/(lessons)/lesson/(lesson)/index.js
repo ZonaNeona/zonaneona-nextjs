@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from "react";
 import LessonSidebar from "@/components/Lesson/LessonSidebar";
 import LessonPagination from "@/components/Lesson/LessonPagination";
