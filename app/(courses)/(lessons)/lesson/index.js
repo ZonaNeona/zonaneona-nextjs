@@ -1,28 +1,48 @@
 'use client';
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import sal from "sal.js";
+import { Provider } from "react-redux";
+import Store from "@/redux/store";
+import Context from "@/context/Context";
 import LessonSidebar from "@/components/Lesson/LessonSidebar";
 import LessonPagination from "@/components/Lesson/LessonPagination";
 import LessonTop from "@/components/Lesson/LessonTop";
 
-const LessonPage = () => {
-  const [lesson, setLesson] = useState(null);
+const Lesson = ({ getParams }) => {
+  const router = useRouter();
+  const postId = parseInt(getParams.lessonId);
+  const [lessonData, setLessonData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // Загружаем данные с API
   useEffect(() => {
-    fetch("https://neonfest.ru/api/lessons/2")
-      .then((response) => response.json())
-      .then((data) => {
-        // Ищем урок с id = 31
-        const selectedLesson = data.find((lesson) => lesson.id === 31);
-        setLesson(selectedLesson); // Устанавливаем урок в состояние
-      })
-      .catch((error) => console.error("Ошибка загрузки урока:", error));
-  }, []);
+    if (!lessonId) {
+      router.push("/");
+      return;
+    }
 
-  if (!lesson) {
-    return <div>Loading...</div>;
-  }
+    const fetchLessonData = async () => {
+      try {
+        const response = await fetch(`https://neonfest.ru/api/courses/${lessonId}/`);
+        if (!response.ok) throw new Error("Ошибка загрузки данных");
+        const data = await response.json();
+        setLesosnData(data);
+      } catch (error) {
+        console.error(error);
+        router.push("/");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourseData();
+
+    sal({ threshold: 0.01, once: true });
+  }, [lessonId, router]);
+
+  if (loading) return <p>Загрузка...</p>;
+  if (!lessonData) return null;
 
   return (
     <>
