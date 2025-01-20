@@ -12,34 +12,54 @@ import LessonTop from "@/components/Lesson/LessonTop";
 
 const Lesson = ({ getParams }) => {
   const router = useRouter();
-  const lessonId = parseInt(getParams.lessonId);
-  const [lessonData, setLessonData] = useState(null); // Исправлена ошибка с переменной
+  const lessonId = parseInt(getParams.lessonId); // Получаем ID урока
+  const courseId = router.query.courseId || null; // Получаем courseId из URL
+  const [lessonData, setLessonData] = useState(null);
+  const [courseData, setCourseData] = useState(null); // Для данных о курсе
   const [loading, setLoading] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(false); // Для отображения бокового меню
 
   useEffect(() => {
     if (!lessonId) {
-      router.push("/");
+      router.push("/"); // Если нет ID урока, перенаправляем на главную
       return;
     }
 
+    // Функция для загрузки данных о уроке
     const fetchLessonData = async () => {
       try {
-        const response = await fetch(`https://neonfest.ru/api/lessons/${lessonId}/`); // Указан правильный URL
-        if (!response.ok) throw new Error("Ошибка загрузки данных");
+        const response = await fetch(`https://neonfest.ru/api/lessons/${lessonId}/`);
+        if (!response.ok) throw new Error("Ошибка загрузки данных о уроке");
         const data = await response.json();
-        setLessonData(data); // Исправлена ошибка с переменной
+        setLessonData(data);
       } catch (error) {
         console.error(error);
         router.push("/");
-      } finally {
-        setLoading(false);
+      }
+    };
+
+    // Функция для загрузки данных о курсе
+    const fetchCourseData = async () => {
+      if (courseId) {
+        try {
+          const response = await fetch(`https://neonfest.ru/api/courses/${courseId}/`);
+          if (!response.ok) throw new Error("Ошибка загрузки данных о курсе");
+          const data = await response.json();
+          setCourseData(data);
+          setShowSidebar(true); // Если курс существует, показываем боковое меню
+        } catch (error) {
+          console.error(error);
+        }
       }
     };
 
     fetchLessonData();
+    fetchCourseData();
 
     sal({ threshold: 0.01, once: true });
-  }, [lessonId, router]);
+
+    setLoading(false);
+  }, [lessonId, courseId, router]);
 
   if (loading) return <p>Загрузка...</p>;
   if (!lessonData) return null;
@@ -48,9 +68,11 @@ const Lesson = ({ getParams }) => {
     <>
       <div className="rbt-lesson-area bg-color-white">
         <div className="rbt-lesson-content-wrapper">
-          <div className="rbt-lesson-leftsidebar">
-            <LessonSidebar />
-          </div>
+          {showSidebar && courseData && (
+            <div className="rbt-lesson-leftsidebar">
+              <LessonSidebar courseData={courseData} />
+            </div>
+          )}
 
           <div className="rbt-lesson-rightsidebar overflow-hidden lesson-video">
             <LessonTop />
@@ -64,10 +86,10 @@ const Lesson = ({ getParams }) => {
               </div>
               <div className="content">
                 <div className="section-title">
-                  <h4>{lessonData.title}</h4> {/* Указываем правильные данные */}
+                  <h4>{lessonData.title}</h4>
                   <div
                     className="lesson-content"
-                    dangerouslySetInnerHTML={{ __html: lessonData.content }} // Вставляем HTML
+                    dangerouslySetInnerHTML={{ __html: lessonData.content }}
                   />
                 </div>
               </div>
