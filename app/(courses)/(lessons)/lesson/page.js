@@ -5,15 +5,15 @@ import { useRouter } from "next/navigation";
 
 const LessonLayout = ({ params }) => {
   const router = useRouter();
-  const postId = params.lessonId;
+  const lessonId = params.lessonId; // Убедитесь, что это правильно используется
 
   useEffect(() => {
     if (!lessonId) {
-      router.push("/");
+      router.push("/");  // Перенаправляем на главную страницу, если нет урока
     }
   }, [lessonId, router]);
 
-  return null;
+  return null;  // Страница ничего не рендерит, просто проверка параметра
 };
 
 export default LessonLayout;
