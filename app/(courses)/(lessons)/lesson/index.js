@@ -12,7 +12,7 @@ import LessonTop from "@/components/Lesson/LessonTop";
 
 const Lesson = ({ getParams }) => {
   const router = useRouter();
-  const postId = parseInt(getParams.lessonId);
+  const lessonId = parseInt(getParams.lessonId);
   const [lessonData, setLessonData] = useState(null);
   const [loading, setLoading] = useState(true);
 
