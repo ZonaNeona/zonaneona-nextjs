@@ -1,30 +1,27 @@
 'use client';
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation"; // Используем хук из next/navigation
 import LessonSidebar from "@/components/Lesson/LessonSidebar";
 import LessonPagination from "@/components/Lesson/LessonPagination";
 import LessonTop from "@/components/Lesson/LessonTop";
-import { useRouter } from "next/navigation";   // Для получения параметров URL
 
 const LessonPage = () => {
   const [lesson, setLesson] = useState(null);
   const router = useRouter();
-  const { lessonId } = router.query; // Получаем параметр lessonId из URL
+
+  // Проверка, готов ли роутер
+  const { lessonId } = router.query;
 
   // Загружаем данные с API
   useEffect(() => {
-    if (router.isReady && lessonId) {  // Проверяем, что роутер и lessonId готовы
+    if (router.isReady && lessonId) {  // Проверяем, что роутер готов и lessonId доступен
       fetch(`https://neonfest.ru/api/lessons/${lessonId}`)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Ошибка загрузки урока");
-          }
-          return response.json();
-        })
-        .then((data) => setLesson(data)) // Устанавливаем полученные данные в состояние
+        .then((response) => response.json())
+        .then((data) => setLesson(data))
         .catch((error) => console.error("Ошибка загрузки урока:", error));
     }
-  }, [router.isReady, lessonId]);  // Выполняем запрос, когда роутер готов и lessonId изменяется
+  }, [router.isReady, lessonId]);  // Перезапуск при изменении lessonId или готовности роутера
 
   if (!lesson) {
     return <div>Loading...</div>;  // Пока данные не загружены, показываем "Loading..."
@@ -52,10 +49,9 @@ const LessonPage = () => {
               <div className="content">
                 <div className="section-title">
                   <h4>{lesson.title}</h4>
-                  {/* Вставляем HTML-контент с помощью dangerouslySetInnerHTML */}
                   <div
                     className="lesson-content"
-                    dangerouslySetInnerHTML={{ __html: lesson.content }} // Вставляем HTML
+                    dangerouslySetInnerHTML={{ __html: lesson.content }}
                   />
                 </div>
               </div>
