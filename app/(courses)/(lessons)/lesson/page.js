@@ -1,19 +1,19 @@
-import BackToTop from "@/app/backToTop";
-import LessonPage from "./(lesson)";
+"use client";
 
-export const metadata = {
-  title:
-    "Questions Below Each Other - Online Courses & Education NEXTJS14 Template",
-  description: "Online Courses & Education NEXTJS14 Template",
+import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+const LessonLayout = ({ params }) => {
+  const router = useRouter();
+  const postId = params.lessonId;
+
+  useEffect(() => {
+    if (!lessonId) {
+      router.push("/");
+    }
+  }, [lessonId, router]);
+
+  return null;
 };
 
-const LessonLayout = () => {
-  return (
-    <>
-      <LessonPage />
-      <BackToTop />
-    </>
-  );
-};
-
-export default LessonLayout;
+export default lessonLayout;
