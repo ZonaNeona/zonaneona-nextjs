@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import LessonSidebar from "@/components/Lesson/LessonSidebar";
 import LessonPagination from "@/components/Lesson/LessonPagination";
 import LessonTop from "@/components/Lesson/LessonTop";
-import { useRouter } from "next/router";  // Добавляем для получения параметров URL
+import { useRouter } from "next/router";  // Для получения параметров URL
 
 const LessonPage = () => {
   const [lesson, setLesson] = useState(null);
@@ -13,16 +13,21 @@ const LessonPage = () => {
 
   // Загружаем данные с API
   useEffect(() => {
-    if (lessonId) {  // Проверяем, что lessonId существует в URL
+    if (router.isReady && lessonId) {  // Проверяем, что роутер и lessonId готовы
       fetch(`https://neonfest.ru/api/lessons/${lessonId}`)
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Ошибка загрузки урока");
+          }
+          return response.json();
+        })
         .then((data) => setLesson(data)) // Устанавливаем полученные данные в состояние
         .catch((error) => console.error("Ошибка загрузки урока:", error));
     }
-  }, [lessonId]);  // Выполняем запрос, когда lessonId изменяется
+  }, [router.isReady, lessonId]);  // Выполняем запрос, когда роутер готов и lessonId изменяется
 
   if (!lesson) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>;  // Пока данные не загружены, показываем "Loading..."
   }
 
   return (
@@ -41,6 +46,7 @@ const LessonPage = () => {
                   className="w-100"
                   src="https://rutube.ru/play/embed/8abca8a82b266edcc256eb7fb061abbe"
                   style={{ minHeight: "615px" }}
+                  title="Lesson Video"
                 ></iframe>
               </div>
               <div className="content">
