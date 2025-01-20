@@ -46,7 +46,7 @@ const Content = ({ modules }) => {
                     {module.lessons &&
                       module.lessons.map((lesson, subIndex) => (
                         <li key={subIndex}>
-                          <Link href={`/lessons/${lesson.id}`}>
+                          <Link href={`/lesson/${lesson.id}`}>
                             <div className="course-content-left">
                               {/* Иконка типа урока */}
                               {lesson.lesson_type === "lecture" ? (
@@ -82,7 +82,7 @@ const Content = ({ modules }) => {
                     {module.tests &&
                       module.tests.map((test, subIndex) => (
                         <li key={subIndex}>
-                          <Link href={`/tests/${test.id}`}>
+                          <Link href={`/test/${test.id}`}>
                             <div className="course-content-left">
                                 <i className="feather-check-square"></i>
                               <span className="text">{test.title}</span>
@@ -103,7 +103,7 @@ const Content = ({ modules }) => {
                     {module.assignments &&
                       module.assignments.map((assignment, subIndex) => (
                         <li key={subIndex}>
-                          <Link href={`/assignments/${assignment.id}`}>
+                          <Link href={`/assignment/${assignment.id}`}>
                             <div className="course-content-left">
                                 <i className="feather-edit-2"></i>
                               <span className="text">{assignment.title}</span>
