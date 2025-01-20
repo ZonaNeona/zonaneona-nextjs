@@ -13,7 +13,7 @@ import LessonTop from "@/components/Lesson/LessonTop";
 const Lesson = ({ getParams }) => {
   const router = useRouter();
   const lessonId = parseInt(getParams.lessonId);
-  const [lessonData, setLessonData] = useState(null);
+  const [lessonData, setLessonData] = useState(null); // Исправлена ошибка с переменной
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,10 +24,10 @@ const Lesson = ({ getParams }) => {
 
     const fetchLessonData = async () => {
       try {
-        const response = await fetch(`https://neonfest.ru/api/courses/${lessonId}/`);
+        const response = await fetch(`https://neonfest.ru/api/lessons/${lessonId}/`); // Указан правильный URL
         if (!response.ok) throw new Error("Ошибка загрузки данных");
         const data = await response.json();
-        setLesosnData(data);
+        setLessonData(data); // Исправлена ошибка с переменной
       } catch (error) {
         console.error(error);
         router.push("/");
@@ -36,7 +36,7 @@ const Lesson = ({ getParams }) => {
       }
     };
 
-    fetchCourseData();
+    fetchLessonData();
 
     sal({ threshold: 0.01, once: true });
   }, [lessonId, router]);
@@ -64,11 +64,10 @@ const Lesson = ({ getParams }) => {
               </div>
               <div className="content">
                 <div className="section-title">
-                  <h4>{lesson.title}</h4>
-                  {/* Вставляем HTML-контент с помощью dangerouslySetInnerHTML */}
+                  <h4>{lessonData.title}</h4> {/* Указываем правильные данные */}
                   <div
                     className="lesson-content"
-                    dangerouslySetInnerHTML={{ __html: lesson.content }} // Вставляем HTML
+                    dangerouslySetInnerHTML={{ __html: lessonData.content }} // Вставляем HTML
                   />
                 </div>
               </div>
@@ -81,4 +80,4 @@ const Lesson = ({ getParams }) => {
   );
 };
 
-export default LessonPage;
+export default Lesson;
