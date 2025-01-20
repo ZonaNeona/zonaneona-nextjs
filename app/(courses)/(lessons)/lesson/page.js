@@ -16,4 +16,4 @@ const LessonLayout = ({ params }) => {
   return null;
 };
 
-export default lessonLayout;
+export default LessonLayout;
