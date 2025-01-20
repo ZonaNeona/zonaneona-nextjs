@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import LessonSidebar from "@/components/Lesson/LessonSidebar";
 import LessonPagination from "@/components/Lesson/LessonPagination";
 import LessonTop from "@/components/Lesson/LessonTop";
-import { useRouter } from "next/router";  // Для получения параметров URL
+import { useRouter } from "next/navigation";   // Для получения параметров URL
 
 const LessonPage = () => {
   const [lesson, setLesson] = useState(null);
